@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--账单按钮状态对应图片-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@mipmap/bill_blue" android:state_checked="true"></item>
+    <item android:drawable="@mipmap/bill_black" android:state_checked="false"></item>
+</selector>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.test.activity.RegisterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/text_blue"
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/back_login_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户注册"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_height="1dp"
+            android:layout_width="match_parent">
+        </LinearLayout>
+
+
+
+        <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="100dp">
+            <com.test.courier.ClearEditText
+                android:id="@+id/name"
+                android:background="@drawable/if_the_selected_input_box"
+                android:layout_height="50dp"
+                android:layout_width="250dp"
+                android:textColor="@drawable/if_the_selected_font_color_replace"
+                android:drawableRight="@mipmap/cuo"
+                android:hint="输入名字"
+                android:drawableLeft="@drawable/if_the_selected_name"
+                android:textCursorDrawable="@drawable/cursor" />
+
+
+        <com.test.courier.ClearEditText
+            android:id="@+id/number"
+            android:background="@drawable/if_the_selected_input_box"
+            android:layout_height="50dp"
+            android:layout_width="250dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/if_the_selected_phone_replace"
+            android:drawableRight="@mipmap/cuo"
+            android:hint="请填写手机号"
+            android:textColor="@drawable/if_the_selected_font_color_replace"
+            android:textCursorDrawable="@null"/>
+
+        <com.test.courier.ClearEditText
+            android:id="@+id/pwd"
+            android:background="@drawable/if_the_selected_input_box"
+            android:layout_height="50dp"
+            android:layout_width="250dp"
+            android:textColor="@drawable/if_the_selected_font_color_replace"
+            android:layout_marginTop="20dp"
+            android:drawableRight="@mipmap/cuo"
+            android:hint="设置密码"
+            android:drawableLeft="@drawable/if_the_selected_pwd_replace"
+            android:textCursorDrawable="@drawable/cursor"
+            android:inputType="textPassword"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:background="@drawable/if_the_selected_input_box"
+                    android:layout_height="50dp"
+                    android:layout_width="125dp"
+                    android:id="@+id/up_code"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="验证码"
+                    android:textCursorDrawable="@null"/>
+                <Button
+                    android:id="@+id/up_codebt"
+                    android:background="@drawable/bg_message"
+                    android:layout_height="50dp"
+                    android:layout_width="125dp"
+                    android:gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:hint="发送验证码"
+                    android:textCursorDrawable="@null"/>
+
+            </LinearLayout>
+        <Button
+            android:id="@+id/zhuce"
+            android:background="@mipmap/register_btn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#fff"
+            android:text="注册"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

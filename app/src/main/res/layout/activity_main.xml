@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="com.test.courier.MainActivity">
+
+    <com.test.courier.MyViewPager
+        android:id="@+id/myviewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_linearlayout"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#535353"/>
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <RadioButton
+                android:id="@+id/radio_waybill"
+                style="@style/RadioButtonStyle"
+                android:text="运单"
+                android:textSize="14sp"
+                android:textColor="@drawable/rbtn_text"
+                android:drawableTop="@drawable/rbtn_bg_waybill"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_bill"
+                style="@style/RadioButtonStyle"
+                android:text="账单"
+                android:textSize="14sp"
+                android:textColor="@drawable/rbtn_text"
+                android:drawableTop="@drawable/rbtn_bg_bill"
+                />
+
+            <RadioButton
+                android:id="@+id/radio_my"
+                style="@style/RadioButtonStyle"
+                android:text="我的"
+                android:textSize="14sp"
+                android:textColor="@drawable/rbtn_text"
+                android:drawableTop="@drawable/rbtn_bg_my"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+
+</RelativeLayout>

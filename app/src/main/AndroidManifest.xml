@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.test.courier">
+
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 拨打电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/appicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.test.activity.RegisterActivity" />
+        <activity android:name="com.test.activity.LoginActivity" />
+        <activity android:name="com.test.activity.ForgetActivity" />
+        <activity android:name="com.test.activity.SettingActivity" />
+        <activity android:name="com.test.activity.FeedbackActivity" />
+        <activity android:name="com.test.activity.MessageActivity" />
+        <activity android:name="com.test.activity.NotifyActivity" />
+        <activity android:name="com.test.activity.MyCenterActivity" />
+        <activity android:name="com.test.activity.PropertyActivity" />
+        <activity android:name="com.test.activity.PayCenterActivity" />
+        <activity android:name="com.test.activity.SecurityCenterActivity" />
+        <activity android:name="com.test.activity.UniversalActivity" />
+        <activity android:name="com.test.activity.RegardingPlbActivity"></activity>
+    </application>
+
+</manifest>

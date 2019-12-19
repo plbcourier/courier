@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:layout_margin="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/waybill_item"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运单号："
+                    android:textSize="16sp"
+                    android:textColor="#2b2b2b"/>
+
+                <TextView
+                    android:id="@+id/waybillnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="123456"
+                    android:textSize="16sp"
+                    android:textColor="#2b2b2b"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥ "
+                    android:textSize="16sp"
+                    android:textColor="#ff0000"/>
+
+                <TextView
+                    android:id="@+id/money_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12.0"
+                    android:textSize="16sp"
+                    android:maxLength="4"
+                    android:textColor="#ff0000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/woicon"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="--"
+            android:maxLength="7"
+            android:textColor="#2b2b2b"/>
+
+        <TextView
+            android:id="@+id/dist_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="10"
+            android:maxLength="4"
+            android:textColor="#2b2b2b"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="km--"
+            android:maxLength="7"
+            android:textColor="#2b2b2b"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/quicon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="--"
+            android:maxLength="7"
+            android:textColor="#2b2b2b"/>
+
+        <TextView
+            android:id="@+id/dist_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="9.71"
+            android:maxLength="4"
+            android:textColor="#2b2b2b"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="km--"
+            android:maxLength="7"
+            android:textColor="#2b2b2b"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/songicon"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物品："
+            android:textSize="18sp"
+            android:textColor="#23a49b"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/cargo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="牛奶"
+            android:textSize="18sp"
+            android:textColor="#5c5c5c"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/coordstart"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起点"
+            android:textSize="18sp"
+            android:textColor="#2d2d2d"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/startadd_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="湖南财经工业职业技术学院"
+            android:textSize="18sp"
+            android:textColor="#2d2d2d"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/coordend"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="终点"
+            android:textSize="18sp"
+            android:textColor="#2d2d2d"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/endadd_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="衡山科学城"
+            android:textSize="18sp"
+            android:textColor="#2d2d2d"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/receive_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="接 单"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:background="#F0AD4E"
+        android:layout_margin="10dp"
+        android:padding="10dp"/>
+
+</LinearLayout>

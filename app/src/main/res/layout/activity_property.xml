@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="com.test.activity.PropertyActivity">
+
+    <LinearLayout
+        android:id="@+id/login_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/text_blue"
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的资产"
+            android:textSize="18sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/rmbicon"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的资产"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#1b1b1b"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥ "
+            android:textSize="40sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/money_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="50sp"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/money_edit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:hint="提现金额"/>
+
+    <Button
+        android:id="@+id/tixian_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="提 现"
+        android:textSize="18sp"
+        android:textColor="@color/text_blue"
+        android:background="@drawable/tixianbtn_bg"
+        android:layout_marginTop="20dp"
+        />
+
+
+</LinearLayout>
