@@ -43,14 +43,11 @@ dependencies {
     compile 'com.jph.takephoto:takephoto_library:4.0.3'
     /*文件中添加gson*/
     compile 'com.google.code.gson:gson:2.8.2'
-
-//    implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')
-//    implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
-
+    //    implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')
+    //    implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
     /*implementation files('E:/git repository/courier/libs/BaiduLBS_Android.jar')
-        implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+            implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
     /*陆章辉-路径*/
     /*   implementation files('F:/GET/courier/courier/libs/BaiduLBS_Android.jar')
-    implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
-
+        implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
 }
