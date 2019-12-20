@@ -58,6 +58,12 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();//刷新listivew
+    }
+
     public List<Quwaybill> getQuwaybills() {
         return quwaybills;
     }
@@ -66,12 +72,6 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         Log.e("tag", "Fragment_waybill_two--setUserVisibleHint: "+isVisibleToUser);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        refreshData();//刷新listivew
     }
 
     private void init() {//初始化

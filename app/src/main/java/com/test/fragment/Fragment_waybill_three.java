@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,12 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
 
     public List<Songwaybill> getSongwaybills() {
         return songwaybills;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e("tag", "Fragment_waybill_three--setUserVisibleHint: "+isVisibleToUser);
     }
 
     private void init() {//初始化
