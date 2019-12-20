@@ -36,8 +36,7 @@ public class NotifyActivity extends AppCompatActivity{
         final AlertDialog.Builder normalDialog = new AlertDialog.Builder(NotifyActivity.this);
         normalDialog.setTitle("这是一个来自系统的消息");
         normalDialog.setMessage("你已经成功加入批零帮");
-        normalDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
+        normalDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //finish();

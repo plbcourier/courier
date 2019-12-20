@@ -14,6 +14,7 @@ public class Constant {//网络接口常量
     public final String DELIVERYING = "deliverying";//待送达
     public final String DELIVERY = "delivery";//确认送达
     public final String REGISTER ="register";//注册
+    public final String CHANGEPASSWORD ="changePassword"; //重置密码
     public final String BILLDETALIS = "billdetalis";//全部明细
     public final String BILLDETALISSTATUSIN = "billdetalisStatusIn";//配送费入账
     public final String BILLDETALISSTATUSOUT = "billdetalisStatusOut";//查询提现信息

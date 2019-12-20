@@ -36,7 +36,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/information"/>
+            android:src="@mipmap/inform"/>
         <TextView
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
