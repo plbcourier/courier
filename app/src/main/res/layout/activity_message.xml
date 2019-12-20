@@ -27,15 +27,22 @@
             android:textSize="18sp"
             android:textColor="#ffffff"/>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/inform"
+        android:background="@drawable/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:hint="未有消息发送过来"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:src="@mipmap/information"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这是一个来自系统的消息"/>
+    </LinearLayout>
 </LinearLayout>

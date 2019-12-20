@@ -6,12 +6,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.test.courier.R;
 
 //---------------系统通知---------------
 public class NotifyActivity extends AppCompatActivity{
+    ImageView back;
     View view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +21,14 @@ public class NotifyActivity extends AppCompatActivity{
         setContentView(R.layout.activity_notify);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();//隐藏标题栏
+        back = findViewById(R.id.back_img);
         view = findViewById(R.id.inform);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +48,7 @@ public class NotifyActivity extends AppCompatActivity{
         normalDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //finish();
+                        finish();
                     }
                 });
         /*normalDialog.setNegativeButton("关闭",
