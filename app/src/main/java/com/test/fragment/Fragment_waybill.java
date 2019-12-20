@@ -39,9 +39,14 @@ public class Fragment_waybill extends Fragment implements RadioGroup.OnCheckedCh
 
     private void init() {//初始化
         fragmentList = new ArrayList<>();//实例化集合并按顺序添加fragment
-        fragmentList.add(new Fragment_waybill_one());//待接单fragment
-        fragmentList.add(new Fragment_waybill_two());//待取货fragment
-        fragmentList.add(new Fragment_waybill_three());//待送达fragment
+
+        Fragment_waybill_one fragment_waybill_one = new Fragment_waybill_one();
+        Fragment_waybill_two fragment_waybill_two = new Fragment_waybill_two();
+        Fragment_waybill_three fragment_waybill_three = new Fragment_waybill_three();
+        fragmentList.add(fragment_waybill_one);//待接单fragment
+        fragmentList.add(fragment_waybill_two);//待取货fragment
+        fragmentList.add(fragment_waybill_three);//待送达fragment
+
         viewPager = view.findViewById(R.id.viewpager);
         fgPagerAdapter = new FgPagerAdapter(getChildFragmentManager());
         radioGroup = view.findViewById(R.id.radiogroup);
@@ -52,6 +57,10 @@ public class Fragment_waybill extends Fragment implements RadioGroup.OnCheckedCh
         viewPager.setAdapter(fgPagerAdapter);//设置适配器
         viewPager.addOnPageChangeListener(this);//viewpager的状态改变监听
         radioGroup.setOnCheckedChangeListener(this);//单选按钮组的点击监听
+
+        radio1.setText("待接单"+"("+fragment_waybill_one.getJiewaybills().size()+")");
+        radio2.setText("待取货"+"("+fragment_waybill_two.getQuwaybills().size()+")");
+        radio3.setText("待送达"+"("+fragment_waybill_three.getSongwaybills().size()+")");
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
     private Myadapter myadapter;//listview的适配器
     private SwipeRefreshLayout refresh_layout;//刷新控件
     private Constant constant;//常量类
-    private List<Songwaybill> songwaybills;//当前列表的数据集合
+    private List<Songwaybill> songwaybills = new ArrayList<>();//当前列表的数据集合
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,9 +64,18 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
         refreshData();//刷新listview
     }
 
+    public List<Songwaybill> getSongwaybills() {
+        return songwaybills;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e("tag", "Fragment_waybill_three--setUserVisibleHint: "+isVisibleToUser);
+    }
+
     private void init() {//初始化
         constant = new Constant();
-        songwaybills = new ArrayList<>();
         listView = view.findViewById(R.id.listview);
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);

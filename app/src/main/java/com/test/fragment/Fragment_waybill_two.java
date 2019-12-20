@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
     private Myadapter myadapter;//listview的适配器
     private SwipeRefreshLayout refresh_layout;//下拉刷新控件
     private Constant constant;//常量类
-    private List<Quwaybill> quwaybills;//当前列表的数据集合
+    private List<Quwaybill> quwaybills = new ArrayList<>();//当前列表的数据集合
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,10 +64,19 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
         refreshData();//刷新listivew
     }
 
+    public List<Quwaybill> getQuwaybills() {
+        return quwaybills;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e("tag", "Fragment_waybill_two--setUserVisibleHint: "+isVisibleToUser);
+    }
+
     private void init() {//初始化
         listView = view.findViewById(R.id.listview);
         constant = new Constant();
-        quwaybills = new ArrayList<>();
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);
         refresh_layout = view.findViewById(R.id.refresh_layout);
