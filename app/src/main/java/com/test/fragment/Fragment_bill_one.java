@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.test.courier.R;
+import com.test.entity.AllBill;
+import com.test.entity.Constant;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2019/12/12.
@@ -23,6 +29,8 @@ public class Fragment_bill_one extends Fragment  implements SwipeRefreshLayout.O
     private ListView listView;
     private Myadapter myadapter;//listview的适配器
     private SwipeRefreshLayout refresh_layout;//刷新控件
+    private Constant constant;//常量类
+    private List<AllBill> allBills = new ArrayList<>();//listview的数据集合
 
     @Nullable
     @Override
@@ -32,7 +40,14 @@ public class Fragment_bill_one extends Fragment  implements SwipeRefreshLayout.O
         return view;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e("tag", "Fragment_bill_one--setUserVisibleHint: "+isVisibleToUser);
+    }
+
     private void init() {//初始化
+        constant = new Constant();
         listView = view.findViewById(R.id.listview);
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);
