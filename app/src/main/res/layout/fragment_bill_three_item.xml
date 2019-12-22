@@ -15,12 +15,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/orderid_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textColor="#000000"
-                android:text="订单号：123456"
+                android:text="账单号："
+                android:layout_weight="0"
+                />
+            <TextView
+                android:id="@+id/billid_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:text="123456"
                 android:layout_weight="0"
                 />
             <LinearLayout
@@ -28,12 +36,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <TextView
-                android:id="@+id/ordermoney_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:textColor="#008B02"
-                android:text="+5.00"
+                android:textColor="#E91E63"
+                android:text="申请提现 -"
+                android:layout_weight="0"
+                />
+            <TextView
+                android:id="@+id/billmoney_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#E91E63"
+                android:text="0.00"
                 android:layout_weight="0"
                 />
 
@@ -45,7 +61,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/date_text"
+                android:id="@+id/time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
@@ -60,15 +76,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="余额："
+                android:text="余额：¥ "
                 android:layout_weight="0"
                 />
             <TextView
-                android:id="@+id/money_text"
+                android:id="@+id/balance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:text="￥25.00"
+                android:text="0.00"
                 />
 
         </LinearLayout>
