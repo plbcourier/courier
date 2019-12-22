@@ -41,9 +41,19 @@ public class Fragment_bill_three extends Fragment implements SwipeRefreshLayout.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        refreshData();//刷新listivew
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         Log.e("tag", "Fragment_bill_three--setUserVisibleHint: "+isVisibleToUser);
+    }
+
+    private void refreshData() {//刷新listivew
+
     }
 
     private void init() {//初始化

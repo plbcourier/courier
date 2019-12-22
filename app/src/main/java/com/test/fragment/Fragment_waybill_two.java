@@ -108,7 +108,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
 
     private class RefreshDataTask extends AsyncTask<Void,Void,List<Quwaybill>> {//刷新数据操作线程
         @Override
-        protected List<Quwaybill> doInBackground(Void... voids) {
+        protected List<Quwaybill> doInBackground(Void... voids) {//刷新数据线程
             String jsonstr = null;
             List<Quwaybill> quwaybillList = new ArrayList<>();//临时存储数据集合
             try {
@@ -120,7 +120,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
                 e.printStackTrace();
             }
             return quwaybillList;
-        }//刷新数据线程
+        }
 
         @Override
         protected void onPostExecute(List<Quwaybill> quwaybillList) {
