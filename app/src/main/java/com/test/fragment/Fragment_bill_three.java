@@ -63,7 +63,7 @@ public class Fragment_bill_three extends Fragment implements SwipeRefreshLayout.
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_bill_two_item,parent,false);
+            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_bill_three_item,parent,false);
 
 
 
