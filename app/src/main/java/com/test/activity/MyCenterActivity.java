@@ -42,7 +42,10 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_center);
+        init();
+    }
 
+    private void init() {
         back = findViewById(R.id.back_img);
         touxiang = findViewById(R.id.head_portrait);
         line1 = findViewById(R.id.line1);
@@ -55,7 +58,6 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
         line2.setOnClickListener(this);
         line3.setOnClickListener(this);
         back.setOnClickListener(this);
-
     }
 
     @Override
