@@ -46,8 +46,8 @@ dependencies {
     //    implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')
     //    implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
     /*implementation files('E:/git repository/courier/libs/BaiduLBS_Android.jar')
-            implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+                implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
     /*陆章辉-路径*/
     /*   implementation files('F:/GET/courier/courier/libs/BaiduLBS_Android.jar')
-        implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+            implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
 }
