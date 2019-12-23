@@ -16,17 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets{
+        main{
+            jniLibs.srcDir 'libs'
+            jni.srcDirs = []    //disable automatic ndk-build
+        }
+    }
 }
 
 configurations.all {
     resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
 }
 
-
 dependencies {
-    androidTestCompile('com.android.support:support-annotations:26.1.0') {
-        force = true
-    }
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     /*OKHTTP依赖*/
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
@@ -46,8 +48,11 @@ dependencies {
     //    implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')
     //    implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
     /*implementation files('E:/git repository/courier/libs/BaiduLBS_Android.jar')
-            implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+                implementation files('E:/git repository/courier/libs/IndoorscapeAlbumPlugin.jar')*/
     /*陆章辉-路径*/
     /*   implementation files('F:/GET/courier/courier/libs/BaiduLBS_Android.jar')
-        implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+            implementation files('F:/GET/courier/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+    /*颜恺生 百度地图配置路径*/
+    /*implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
+    implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')*/
 }
