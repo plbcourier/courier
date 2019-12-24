@@ -58,9 +58,9 @@ public class Fragment_waybill extends Fragment implements RadioGroup.OnCheckedCh
         viewPager.addOnPageChangeListener(this);//viewpager的状态改变监听
         radioGroup.setOnCheckedChangeListener(this);//单选按钮组的点击监听
 
-        radio1.setText("待接单"+"("+fragment_waybill_one.getJiewaybills().size()+")");
+        /*radio1.setText("待接单"+"("+fragment_waybill_one.getJiewaybills().size()+")");
         radio2.setText("待取货"+"("+fragment_waybill_two.getQuwaybills().size()+")");
-        radio3.setText("待送达"+"("+fragment_waybill_three.getSongwaybills().size()+")");
+        radio3.setText("待送达"+"("+fragment_waybill_three.getSongwaybills().size()+")");*/
     }
 
     @Override

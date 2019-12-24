@@ -16,8 +16,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             jniLibs.srcDir 'libs'
             jni.srcDirs = []    //disable automatic ndk-build
         }
@@ -50,4 +50,7 @@ dependencies {
     implementation files('../libs/BaiduLBS_Android.jar')
     implementation files('../libs/IndoorscapeAlbumPlugin.jar')
 }
+
+
+
 

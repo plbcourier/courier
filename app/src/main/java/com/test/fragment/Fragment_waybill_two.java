@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ import okhttp3.Response;
  */
 
 //---------------待取货----------------
-public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
     private View view;//该fragment的视图
     private ListView listView;
     private Myadapter myadapter;//listview的适配器
@@ -61,7 +62,6 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
     @Override
     public void onResume() {
         super.onResume();
-        refreshData();//刷新listivew
     }
 
     public List<Quwaybill> getQuwaybills() {
@@ -72,6 +72,20 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         Log.e("tag", "Fragment_waybill_two--setUserVisibleHint: "+isVisibleToUser);
+        if (isVisibleToUser){
+            final Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(100);
+                        refreshData();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            thread.start();
+        }
     }
 
     private void init() {//初始化
@@ -79,6 +93,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
         constant = new Constant();
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);
+        listView.setOnItemClickListener(this);
         refresh_layout = view.findViewById(R.id.refresh_layout);
         refresh_layout.setOnRefreshListener(this);//设置下拉刷新监听
     }
@@ -104,6 +119,11 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
         }
         RefreshDataTask refreshDataTask = new RefreshDataTask();
         refreshDataTask.execute();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,List<Quwaybill>> {//刷新数据操作线程
