@@ -139,13 +139,25 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
         JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组对象
         for (int i=0;i<jsonArray.length();i++){//解析数据并存入临时集合
             JSONObject itemObject = jsonArray.getJSONObject(i);
-            String orderid = itemObject.getString("orderid");//订单号
+            String address = itemObject.getString("address");//收货地址
+            String freightInsurance = itemObject.getString("freightInsurance");//货物保险费
+            String leaveMessage = itemObject.getString("leaveMessage");//消息
+            String money = itemObject.getString("money");//运单金额
+            String orderid = itemObject.getString("orderid");//运单id
+            String orderTime = itemObject.getString("orderTime");//运单时间
+            String phone = itemObject.getString("phone");//发货人电话
             String freight = itemObject.getString("freight");//配送费
-            String distance = itemObject.getString("distance");//距离A
-            String goodsName = itemObject.getString("goodsName");//货品名
-            String marketName = itemObject.getString("marketName");//起点，取货点
-            String address = itemObject.getString("address");//终点，送货点
-            jiewaybillList.add(new Jiewaybill(orderid,freight,distance,goodsName,marketName,address));
+            String marketName = itemObject.getString("marketName");//发货地址
+            String longitude = itemObject.getString("longitude");//发货地址经度
+            String latitude = itemObject.getString("latitude");//发货地址纬度
+            String distance = itemObject.getString("distance");//我的位置与发货点距离
+            String goodsName = itemObject.getString("goodsName");//货物名
+            String distanceEnd = itemObject.getString("distanceEnd");//发货点与收货点距离
+            String goodUrl = itemObject.getString("goodUrl");//图片链接
+            String number = itemObject.getString("number");//货物数量
+
+            jiewaybillList.add(new Jiewaybill(address,freightInsurance,leaveMessage,money,orderid,orderTime,phone
+            ,freight,marketName,longitude,latitude,distance,goodsName,distanceEnd,goodUrl,number));
         }
         return jiewaybillList;
     }
@@ -198,6 +210,7 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
                 waybillnum_text.setText(jiewaybills.get(position).getOrderid());
                 money_text.setText(jiewaybills.get(position).getFreight());
                 dist_text1.setText(jiewaybills.get(position).getDistance());
+                dist_text2.setText(jiewaybills.get(position).getDistanceEnd());
                 cargo_text.setText(jiewaybills.get(position).getGoodsName());
                 startadd_text.setText(jiewaybills.get(position).getMarketName());
                 endadd_text.setText(jiewaybills.get(position).getAddress());
