@@ -27,8 +27,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import okhttp3.FormBody;
@@ -280,6 +285,22 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
             jsonstr = response.body().string();//返回的json数据
         }
         return jsonstr;
+    }
+
+    public static String dealDateFormat(String oldDate) {//时间格式处理
+        Date date1 = null;
+        DateFormat df2 = null;
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date date = df.parse(oldDate);
+            SimpleDateFormat df1 = new SimpleDateFormat ("EEE MMM dd HH:mm:ss Z yyyy", Locale.UK);
+            date1 = df1.parse(date.toString());
+            df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+        return df2.format(date1);
     }
 
 }
