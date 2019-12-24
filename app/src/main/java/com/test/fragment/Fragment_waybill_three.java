@@ -168,10 +168,16 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
             String freight = itemObject.getString("freight");//配送费
             String address = itemObject.getString("address");//送货点
             String date = itemObject.getString("date");//时间
-            String longitude = itemObject.getString("longitude");//经度
-            String latitude = itemObject.getString("latitude");//纬度
-            String phone = itemObject.getString("phone");//手机号
-            songwaybillList.add(new Songwaybill(id,orderid,freight,address,date,longitude,latitude,phone));
+            String longitude = itemObject.getString("longitude");//收货地址经度
+            String latitude = itemObject.getString("latitude");//收货地址纬度
+            String phone = itemObject.getString("phone");//收货人手机号
+            String marketName = itemObject.getString("marketName");//发货地址
+            String goodsName = itemObject.getString("goodsName");//货物名
+            String number = itemObject.getString("number");//货物数量
+            String goodUrl = itemObject.getString("goodUrl");//货物图片链接
+
+            songwaybillList.add(new Songwaybill(id,orderid,freight,address,date
+                    ,longitude,latitude,phone,marketName,goodsName,number,goodUrl));
         }
         return songwaybillList;
     }

@@ -35,7 +35,8 @@ public class Quwaybill {//待取货运单实体类
     private String number;//货物数量
     private String goodUrl;//货物图片链接
 
-    public Quwaybill(String id, String orderid, String date, String marketName, String pickCode, String freight, String longitude, String latitude, String phone, String address, String goodsName, String number, String goodUrl) {
+    public Quwaybill(String id, String orderid, String date, String marketName, String pickCode, String freight,
+                     String longitude, String latitude, String phone, String address, String goodsName, String number, String goodUrl) {
         this.id = id;
         this.orderid = orderid;
         this.date = date;
