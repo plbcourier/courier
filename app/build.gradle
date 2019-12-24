@@ -47,6 +47,12 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
 
     /*颜恺生 百度地图配置路径*/
+
+
+
+
+
     implementation files('../libs/BaiduLBS_Android.jar')
     implementation files('../libs/IndoorscapeAlbumPlugin.jar')
 }
+
