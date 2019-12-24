@@ -1,15 +1,74 @@
 package com.test.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.test.courier.R;
 
-public class WaybillTwoActivity extends Activity {
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
+//-----------------待取货运单详情-------------------
+public class WaybillTwoActivity extends Activity implements View.OnClickListener {
+    private ImageView back_img;//返回按钮
+    private String id,orderid,date,marketName,pickCode,freight,longitude
+            ,latitude,phone,address,goodsName,number,goodUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waybill_two);
+        init();
+    }
+
+    private void init(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        id = bundle.getString("id");
+        orderid = bundle.getString("orderid");//订单号
+        date = bundle.getString("date");//时间
+        marketName = bundle.getString("marketName");//发货地址
+        pickCode = bundle.getString("pickCode");//取货码
+        freight = bundle.getString("freight");//配送费
+        longitude = bundle.getString("longitude");//收货地址经度
+        latitude = bundle.getString("latitude");//收货地址纬度
+        phone = bundle.getString("phone");//收货人手机号
+        address = bundle.getString("address");//送货点
+        goodsName = bundle.getString("goodsName");//货物名
+        number = bundle.getString("number");//货物数量
+        goodUrl = bundle.getString("goodUrl");//货物图片链接
+
+        back_img = findViewById(R.id.back_img);
+        back_img.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.back_img://返回按钮
+                finish();
+                break;
+        }
+    }
+
+    public static String dealDateFormat(String oldDate) {//时间格式处理
+        Date date1 = null;
+        DateFormat df2 = null;
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            Date date = df.parse(oldDate);
+            SimpleDateFormat df1 = new SimpleDateFormat ("EEE MMM dd HH:mm:ss Z yyyy", Locale.UK);
+            date1 = df1.parse(date.toString());
+            df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+        return df2.format(date1);
     }
 }

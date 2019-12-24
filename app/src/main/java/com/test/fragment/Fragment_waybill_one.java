@@ -1,5 +1,6 @@
 package com.test.fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.activity.WaybillOneActivity;
 import com.test.courier.R;
 import com.test.entity.Constant;
 import com.test.entity.Jiewaybill;
@@ -68,6 +70,7 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
     @Override
     public void onResume() {
         super.onResume();
+        refreshData();//刷新listview
     }
 
     public List<Jiewaybill> getJiewaybills() {
@@ -84,7 +87,7 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
                 public void run() {
                     try {
                         Thread.sleep(100);
-                        refreshData();
+                        refreshData();//刷新listview
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -113,7 +116,28 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        
+        Bundle bundle = new Bundle();
+        bundle.putString("address",jiewaybills.get(position).getAddress());//收货地址
+        bundle.putString("freightInsurance",jiewaybills.get(position).getFreightInsurance());//货物保险费
+        bundle.putString("leaveMessage",jiewaybills.get(position).getLeaveMessage());//消息
+        bundle.putString("money",jiewaybills.get(position).getMoney());//运单金额
+        bundle.putString("orderid",jiewaybills.get(position).getOrderid());//运单id
+        bundle.putString("orderTime",jiewaybills.get(position).getOrderTime());//运单时间
+        bundle.putString("phone",jiewaybills.get(position).getPhone());//发货人电话
+        bundle.putString("freight",jiewaybills.get(position).getFreight());//配送费
+        bundle.putString("marketName",jiewaybills.get(position).getMarketName());//发货地址
+        bundle.putString("longitude",jiewaybills.get(position).getLongitude());//发货地址经度
+        bundle.putString("latitude",jiewaybills.get(position).getLatitude());//发货地址纬度
+        bundle.putString("distance",jiewaybills.get(position).getDistance());//我的位置与发货点距离
+        bundle.putString("goodsName",jiewaybills.get(position).getGoodsName());//货物名
+        bundle.putString("distanceEnd",jiewaybills.get(position).getDistanceEnd());//发货点与收货点距离
+        bundle.putString("goodUrl",jiewaybills.get(position).getGoodUrl());//图片链接
+        bundle.putString("number",jiewaybills.get(position).getNumber());//货物数量
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), WaybillOneActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,List<Jiewaybill>>{//刷新数据操作线程
@@ -160,28 +184,30 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
 
     private List<Jiewaybill> jsonExtract(String jsonstr) throws JSONException {
         List<Jiewaybill> jiewaybillList = new ArrayList<>();//存放解析后数据的临时集合
-        JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组对象
-        for (int i=0;i<jsonArray.length();i++){//解析数据并存入临时集合
-            JSONObject itemObject = jsonArray.getJSONObject(i);
-            String address = itemObject.getString("address");//收货地址
-            String freightInsurance = itemObject.getString("freightInsurance");//货物保险费
-            String leaveMessage = itemObject.getString("leaveMessage");//消息
-            String money = itemObject.getString("money");//运单金额
-            String orderid = itemObject.getString("orderid");//运单id
-            String orderTime = itemObject.getString("orderTime");//运单时间
-            String phone = itemObject.getString("phone");//发货人电话
-            String freight = itemObject.getString("freight");//配送费
-            String marketName = itemObject.getString("marketName");//发货地址
-            String longitude = itemObject.getString("longitude");//发货地址经度
-            String latitude = itemObject.getString("latitude");//发货地址纬度
-            String distance = itemObject.getString("distance");//我的位置与发货点距离
-            String goodsName = itemObject.getString("goodsName");//货物名
-            String distanceEnd = itemObject.getString("distanceEnd");//发货点与收货点距离
-            String goodUrl = itemObject.getString("goodUrl");//图片链接
-            String number = itemObject.getString("number");//货物数量
+        if (jsonstr!=null||!"".equals(jsonstr)){
+            JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组对象
+            for (int i=0;i<jsonArray.length();i++){//解析数据并存入临时集合
+                JSONObject itemObject = jsonArray.getJSONObject(i);
+                String address = itemObject.getString("address");//收货地址
+                String freightInsurance = itemObject.getString("freightInsurance");//货物保险费
+                String leaveMessage = itemObject.getString("leaveMessage");//消息
+                String money = itemObject.getString("money");//运单金额
+                String orderid = itemObject.getString("orderid");//运单id
+                String orderTime = itemObject.getString("orderTime");//运单时间
+                String phone = itemObject.getString("phone");//发货人电话
+                String freight = itemObject.getString("freight");//配送费
+                String marketName = itemObject.getString("marketName");//发货地址
+                String longitude = itemObject.getString("longitude");//发货地址经度
+                String latitude = itemObject.getString("latitude");//发货地址纬度
+                String distance = itemObject.getString("distance");//我的位置与发货点距离
+                String goodsName = itemObject.getString("goodsName");//货物名
+                String distanceEnd = itemObject.getString("distanceEnd");//发货点与收货点距离
+                String goodUrl = itemObject.getString("goodUrl");//图片链接
+                String number = itemObject.getString("number");//货物数量
 
-            jiewaybillList.add(new Jiewaybill(address,freightInsurance,leaveMessage,money,orderid,orderTime,phone
-            ,freight,marketName,longitude,latitude,distance,goodsName,distanceEnd,goodUrl,number));
+                jiewaybillList.add(new Jiewaybill(address,freightInsurance,leaveMessage,money,orderid,orderTime,phone
+                ,freight,marketName,longitude,latitude,distance,goodsName,distanceEnd,goodUrl,number));
+            }
         }
         return jiewaybillList;
     }
@@ -305,22 +331,6 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
             jsonstr = response.body().string();//返回的json数据
         }
         return jsonstr;
-    }
-
-    public static String dealDateFormat(String oldDate) {//时间格式处理
-        Date date1 = null;
-        DateFormat df2 = null;
-        try {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date date = df.parse(oldDate);
-            SimpleDateFormat df1 = new SimpleDateFormat ("EEE MMM dd HH:mm:ss Z yyyy", Locale.UK);
-            date1 = df1.parse(date.toString());
-            df2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        } catch (ParseException e) {
-
-            e.printStackTrace();
-        }
-        return df2.format(date1);
     }
 
 }

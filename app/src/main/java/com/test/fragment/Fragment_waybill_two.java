@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.activity.WaybillOneActivity;
+import com.test.activity.WaybillTwoActivity;
 import com.test.courier.R;
 import com.test.entity.Constant;
 import com.test.entity.Quwaybill;
@@ -62,6 +64,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
     @Override
     public void onResume() {
         super.onResume();
+        refreshData();//刷新listview
     }
 
     public List<Quwaybill> getQuwaybills() {
@@ -123,7 +126,25 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id",quwaybills.get(position).getId());
+        bundle.putString("orderid",quwaybills.get(position).getOrderid());//订单号
+        bundle.putString("date",quwaybills.get(position).getDate());//时间
+        bundle.putString("marketName",quwaybills.get(position).getMarketName());//发货地址
+        bundle.putString("pickCode",quwaybills.get(position).getPickCode());//取货码
+        bundle.putString("freight",quwaybills.get(position).getFreight());//配送费
+        bundle.putString("longitude",quwaybills.get(position).getLongitude());//发货地址经度
+        bundle.putString("latitude",quwaybills.get(position).getLatitude());//发货地址纬度
+        bundle.putString("phone",quwaybills.get(position).getPhone());//发货人手机号
+        bundle.putString("address",quwaybills.get(position).getAddress());//收货地址
+        bundle.putString("goodsName",quwaybills.get(position).getGoodsName());//货物名
+        bundle.putString("number",quwaybills.get(position).getNumber());//货物数量
+        bundle.putString("goodUrl",quwaybills.get(position).getGoodUrl());//货物图片链接
 
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), WaybillTwoActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,List<Quwaybill>> {//刷新数据操作线程
@@ -185,25 +206,27 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
      */
     private List<Quwaybill> jsonExtract(String jsonstr) throws JSONException {
         List<Quwaybill> quwaybillList = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组
-        for (int i=0;i<jsonArray.length();i++){
-            JSONObject itemObject = jsonArray.getJSONObject(i);
-            String id = itemObject.getString("id");
-            String orderid = itemObject.getString("orderId");//订单号
-            String date = itemObject.getString("date");//时间
-            String marketName = itemObject.getString("marketName");//发货地址
-            String pickCode = itemObject.getString("pickCode");//取货码
-            String freight = itemObject.getString("freight");//配送费
-            String longitude = itemObject.getString("longitude");//发货地址经度
-            String latitude = itemObject.getString("latitude");//发货地址纬度
-            String phone = itemObject.getString("phone");//发货人手机号
-            String address = itemObject.getString("address");//收货地址
-            String goodsName = itemObject.getString("goodsName");//货物名
-            String number = itemObject.getString("number");//货物数量
-            String goodUrl = itemObject.getString("goodUrl");//货物图片链接
+        if (jsonstr!=null||!"".equals(jsonstr)) {
+            JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject itemObject = jsonArray.getJSONObject(i);
+                String id = itemObject.getString("id");
+                String orderid = itemObject.getString("orderId");//订单号
+                String date = itemObject.getString("date");//时间
+                String marketName = itemObject.getString("marketName");//发货地址
+                String pickCode = itemObject.getString("pickCode");//取货码
+                String freight = itemObject.getString("freight");//配送费
+                String longitude = itemObject.getString("longitude");//发货地址经度
+                String latitude = itemObject.getString("latitude");//发货地址纬度
+                String phone = itemObject.getString("phone");//发货人手机号
+                String address = itemObject.getString("address");//收货地址
+                String goodsName = itemObject.getString("goodsName");//货物名
+                String number = itemObject.getString("number");//货物数量
+                String goodUrl = itemObject.getString("goodUrl");//货物图片链接
 
-            quwaybillList.add(new Quwaybill(id,orderid,date,marketName,pickCode,freight,longitude,latitude,phone
-            ,address,goodsName,number,goodUrl));
+                quwaybillList.add(new Quwaybill(id, orderid, date, marketName, pickCode, freight, longitude, latitude, phone
+                        , address, goodsName, number, goodUrl));
+            }
         }
         return quwaybillList;
     }

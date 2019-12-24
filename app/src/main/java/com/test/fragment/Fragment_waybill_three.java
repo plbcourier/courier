@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.activity.WaybillThreeActivity;
+import com.test.activity.WaybillTwoActivity;
 import com.test.courier.R;
 import com.test.entity.Constant;
 import com.test.entity.Quwaybill;
@@ -62,6 +64,7 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
     @Override
     public void onResume() {
         super.onResume();
+        refreshData();//刷新listview
     }
 
     public List<Songwaybill> getSongwaybills() {
@@ -123,7 +126,25 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id",songwaybills.get(position).getId());
+        bundle.putString("orderid",songwaybills.get(position).getOrderId());//订单号
+        bundle.putString("freight",songwaybills.get(position).getFreight());//配送费
+        bundle.putString("address",songwaybills.get(position).getAddress());//送货点
+        bundle.putString("date",songwaybills.get(position).getDate());//时间
+        bundle.putString("longitude",songwaybills.get(position).getLongitude());//收货地址经度
+        bundle.putString("latitude",songwaybills.get(position).getLatitude());//收货地址纬度
+        bundle.putString("phone",songwaybills.get(position).getPhone());//收货人手机号
+        bundle.putString("marketName",songwaybills.get(position).getMarketName());//发货地址
+        bundle.putString("goodsName",songwaybills.get(position).getGoodsName());//货物名
+        bundle.putString("number",songwaybills.get(position).getNumber());//货物数量
+        bundle.putString("goodUrl",songwaybills.get(position).getGoodUrl());//货物图片链接
 
+
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), WaybillThreeActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private class RefreshDataTask extends AsyncTask<Void,Void,List<Songwaybill>>{
@@ -180,24 +201,26 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
 
     private List<Songwaybill> jsonExtract(String jsonstr) throws JSONException {
         List<Songwaybill> songwaybillList = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组
-        for (int i=0;i<jsonArray.length();i++){
-            JSONObject itemObject = jsonArray.getJSONObject(i);
-            String id = itemObject.getString("id");
-            String orderid = itemObject.getString("orderId");//订单号
-            String freight = itemObject.getString("freight");//配送费
-            String address = itemObject.getString("address");//送货点
-            String date = itemObject.getString("date");//时间
-            String longitude = itemObject.getString("longitude");//收货地址经度
-            String latitude = itemObject.getString("latitude");//收货地址纬度
-            String phone = itemObject.getString("phone");//收货人手机号
-            String marketName = itemObject.getString("marketName");//发货地址
-            String goodsName = itemObject.getString("goodsName");//货物名
-            String number = itemObject.getString("number");//货物数量
-            String goodUrl = itemObject.getString("goodUrl");//货物图片链接
+        if (jsonstr!=null||!"".equals(jsonstr)) {
+            JSONArray jsonArray = new JSONArray(jsonstr);//解析json数组
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject itemObject = jsonArray.getJSONObject(i);
+                String id = itemObject.getString("id");
+                String orderid = itemObject.getString("orderId");//订单号
+                String freight = itemObject.getString("freight");//配送费
+                String address = itemObject.getString("address");//送货点
+                String date = itemObject.getString("date");//时间
+                String longitude = itemObject.getString("longitude");//收货地址经度
+                String latitude = itemObject.getString("latitude");//收货地址纬度
+                String phone = itemObject.getString("phone");//收货人手机号
+                String marketName = itemObject.getString("marketName");//发货地址
+                String goodsName = itemObject.getString("goodsName");//货物名
+                String number = itemObject.getString("number");//货物数量
+                String goodUrl = itemObject.getString("goodUrl");//货物图片链接
 
-            songwaybillList.add(new Songwaybill(id,orderid,freight,address,date
-                    ,longitude,latitude,phone,marketName,goodsName,number,goodUrl));
+                songwaybillList.add(new Songwaybill(id, orderid, freight, address, date
+                        , longitude, latitude, phone, marketName, goodsName, number, goodUrl));
+            }
         }
         return songwaybillList;
     }
