@@ -195,7 +195,9 @@ public class Fragment_bill_two extends Fragment implements SwipeRefreshLayout.On
 
             billid_text.setText(addBills.get(position).getId());
             billmoney_text.setText(addBills.get(position).getOrderMoney());
-            time_text.setText(addBills.get(position).getTime());
+            String time = addBills.get(position).getTime();
+            time = time.substring(0,time.length()-2);
+            time_text.setText(time);
             balance_text.setText(addBills.get(position).getNowLeftMoney());
 
             return convertView;

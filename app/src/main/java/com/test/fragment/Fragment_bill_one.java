@@ -203,10 +203,9 @@ public class Fragment_bill_one extends Fragment  implements SwipeRefreshLayout.O
                 billmoney_text.setText("申请提现 -"+allBills.get(position).getOrderMoney());
                 billmoney_text.setTextColor(Color.parseColor("#E91E63"));
             }
-            /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String time = allBills.get(position).getTime();
-            time = simpleDateFormat.format(time);*/
-            time_text.setText(allBills.get(position).getTime());
+            time = time.substring(0,time.length()-2);
+            time_text.setText(time);
             balance_text.setText(allBills.get(position).getNowLeftMoney());
 
             return convertView;
