@@ -56,4 +56,5 @@ dependencies {
     /*颜恺生 百度地图配置路径*/
     /*implementation files('D:/AndroidStudioProjects/courier/libs/BaiduLBS_Android.jar')
     implementation files('D:/AndroidStudioProjects/courier/libs/IndoorscapeAlbumPlugin.jar')*/
+}
 
