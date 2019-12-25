@@ -18,8 +18,7 @@
             android:text="起点："/>
         <EditText
             android:id="@+id/Start_Edt_City"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="70dp"
             android:hint="市区"
             android:layout_height="match_parent" />
         <EditText
@@ -27,6 +26,8 @@
             android:layout_weight="2"
             android:layout_width="0dp"
             android:hint="地址"
+            android:maxLines="1"
+            android:singleLine="true"
             android:layout_height="match_parent" />
     </LinearLayout>
     <LinearLayout
@@ -42,8 +43,7 @@
             android:text="终点："/>
         <EditText
             android:id="@+id/End_Edt_City"
-            android:layout_weight="1"
-            android:layout_width="0dp"
+            android:layout_width="70dp"
             android:hint="市区"
             android:layout_height="match_parent" />
         <EditText
@@ -51,7 +51,10 @@
             android:layout_weight="2"
             android:layout_width="0dp"
             android:hint="地址"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:singleLine="true"
+            />
     </LinearLayout>
     <Button
         android:id="@+id/btn_drive"
@@ -63,6 +66,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true" />
-
 
 </LinearLayout>

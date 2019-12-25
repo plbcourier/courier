@@ -1,14 +1,19 @@
 package com.test.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -119,7 +124,8 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
                 finish();
                 break;
             case R.id.navi_btn://导航按钮
-
+                Intent intent2=new Intent(WaybillTwoActivity.this, NaviActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.phone_btn://拨打电话
                 Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -131,6 +137,7 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
                 PickGoodsTask pickGoodsTask = new PickGoodsTask();
                 pickGoodsTask.execute(id);
                 break;
+
         }
     }
 
