@@ -1,13 +1,18 @@
 package com.test.fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.test.activity.NaviActivity;
 import com.test.activity.WaybillThreeActivity;
 import com.test.activity.WaybillTwoActivity;
 import com.test.courier.R;
@@ -264,7 +270,19 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
                     String address = songwaybills.get(position).getAddress();//送货地址
                     String longitude = songwaybills.get(position).getLongitude();//经度
                     String latitude = songwaybills.get(position).getLatitude();//纬度
-
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        //定位权限
+                        String[] locationPermission = {Manifest.permission.ACCESS_FINE_LOCATION};
+                        if (ContextCompat.checkSelfPermission(getActivity(),locationPermission[0]) != PackageManager.PERMISSION_GRANTED) {
+                            // 如果没有授予该权限，就去提示用户请求
+                            ActivityCompat.requestPermissions(getActivity(), locationPermission, 300);
+                        }
+                        if (ContextCompat.checkSelfPermission(getActivity(),locationPermission[0])== PackageManager.PERMISSION_GRANTED) {
+                            // 如果没有授予该权限，就去提示用户请求
+                            Intent intent=new Intent(getActivity(), NaviActivity.class);
+                            startActivity(intent);
+                        }
+                    }
                 }
             });
 

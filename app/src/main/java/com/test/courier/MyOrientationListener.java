@@ -7,7 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 /**
- * Created by Administrator on 2019/12/25.
+ *传感器，实现方向的控制
  */
 
 public class MyOrientationListener implements SensorEventListener {

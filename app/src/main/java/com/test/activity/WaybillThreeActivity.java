@@ -115,7 +115,8 @@ public class WaybillThreeActivity extends Activity implements View.OnClickListen
                 finish();
                 break;
             case R.id.navi_btn://导航按钮
-
+                Intent intent2=new Intent(WaybillThreeActivity.this, NaviActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.phone_btn://拨号按钮
                 Intent intent = new Intent(Intent.ACTION_DIAL);

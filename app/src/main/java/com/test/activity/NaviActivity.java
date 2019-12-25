@@ -41,7 +41,7 @@ import com.test.courier.MyOrientationListener;
 import com.test.courier.R;
 
 import java.util.ArrayList;
-
+//开始导航页面
 public class NaviActivity extends AppCompatActivity implements View.OnClickListener {
     private MapView mMapView = null;
     private BaiduMap mBaiduMap = null;
@@ -50,7 +50,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     //定位相关
     private double mLatitude;
     private double mLongtitude;
-
+    public String NowAddress,NowCity;
     //方向传感器
     private MyOrientationListener mMyOrientationListener;
     private float mCurrentX;
@@ -81,9 +81,8 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         initPoutePlan();
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
-        start_edt_city.setText("衡阳市");
-        start_edt_address.setText("夕阳红公寓");
         end_edt_city.setText("衡阳市");
+        start_edt_address.setText("夕阳红公寓");
         end_edt_address.setText("五一市场");
         btnDrive.performClick();
     }
@@ -104,7 +103,6 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         option.setOpenGps(true); // 打开gps
         //设置需要地址信息
         option.setIsNeedAddress(true);
-        option.setScanSpan(5000);
         //设置locationClientOption
         //设置需要位置描述信息
         option.setIsNeedLocationDescribe(true);
@@ -241,7 +239,9 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
             mBaiduMap.setMyLocationConfiguration(config);
             //更新经纬度
             mLatitude = location.getLatitude();
+            start_edt_city.setText(location.getCity());
             mLongtitude = location.getLongitude();
+            btnDrive.performClick();
             //设置起点
             mLastLocationData = new LatLng(mLatitude, mLongtitude);
             if (isFirstin) {
@@ -297,6 +297,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
         mMapView.onPause();
+        mSearch.destroy();
     }
     @Override
     protected void onStop() {

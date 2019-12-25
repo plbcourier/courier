@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2019/12/25.
+ *覆盖物管理类
  */
 
 public abstract class OverlayManager implements BaiduMap.OnMarkerClickListener,BaiduMap.OnPolylineClickListener {
