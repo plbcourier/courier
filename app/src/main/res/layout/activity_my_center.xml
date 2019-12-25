@@ -48,12 +48,12 @@
             android:layout_width="259dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
-        <ImageView
+
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/head_portrait"
             android:layout_width="70dp"
-            android:layout_height="68dp"
-            android:layout_weight="0"
-            />
+            android:layout_height="70dp"
+            android:layout_weight="0"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/username_text"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:gravity="center"

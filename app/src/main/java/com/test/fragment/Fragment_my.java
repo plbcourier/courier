@@ -64,7 +64,6 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         //查询当前登录用户的userid
         Cursor cursor = database.query("userinfo",null,null,null,null,null,null);
         cursor.moveToFirst();
-        //Toast.makeText(getActivity(), cursor.getString(1)+"", Toast.LENGTH_SHORT).show();
         String userid = cursor.getString(1);
         if (!"0".equals(userid)){//有用户登录
             cursor = database.query("userinfo",null,"userid = ?",new String[]{userid},null,null,null);
