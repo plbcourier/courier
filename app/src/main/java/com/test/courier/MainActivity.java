@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioGroup radioGroup;//单选按钮组
     private RadioButton radio_waybill;//运单按钮
     private FgPagerAdapter fgPagerAdapter;//fragmentpageradapter
+    private CoordsUtil coordsUtil;//定位工具类
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         radio_waybill.setChecked(true);//默认选中运单界面
         radioGroup.setOnCheckedChangeListener(this);//单选按钮组的子项单选按钮的监听
         myViewPager.setAdapter(fgPagerAdapter);//设置适配器
+        coordsUtil = new CoordsUtil();
+        coordsUtil.getLongitude(MainActivity.this);
     }
 
     @Override

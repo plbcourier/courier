@@ -6,9 +6,9 @@ package com.test.entity;
 
 //-----------坐标参数对象实体类-----------
 public class Coords {
-    private Double longitude;//经度
-    private Double latitude;//纬度
-    private String address;//地址字符串
+    private Double longitude = 112.586483;//经度
+    private Double latitude = 26.828654;//纬度
+    private String address = "";//地址字符串
 
     public Double getLongitude() {
         return longitude;

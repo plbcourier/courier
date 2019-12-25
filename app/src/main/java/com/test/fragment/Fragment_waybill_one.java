@@ -20,8 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.activity.WaybillOneActivity;
+import com.test.courier.CoordsUtil;
 import com.test.courier.R;
 import com.test.entity.Constant;
+import com.test.entity.Coords;
 import com.test.entity.Jiewaybill;
 import com.test.sqlite.UserinfoDBUtil;
 
@@ -59,6 +61,8 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
     private SwipeRefreshLayout refresh_layout;//下拉刷新控件
     private Constant constant;//常量类
     private List<Jiewaybill> jiewaybills = new ArrayList<>();//当前列表的数据集合
+    private Coords coords;//坐标数据
+    private CoordsUtil coordsUtil;//定位工具类
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -165,11 +169,12 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
     }
 
     private String getJson() throws IOException {//获取待接单数据
+        coordsUtil.getLongitude(getActivity());
         String jsonstr = null;
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = new FormBody.Builder()//传入经纬度
-                .add("longitude","112.586483")
-                .add("latitude","26.828654")
+                .add("longitude",coords.getLongitude()+"")
+                .add("latitude",coords.getLatitude()+"")
                 .build();
         Request request = new Request.Builder()//请求对象
                 .url(constant.PREFIX+constant.JIEWAYBILL)
@@ -220,6 +225,8 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
         refresh_layout = view.findViewById(R.id.refresh_layout);
         refresh_layout.setOnRefreshListener(this);//下拉刷新监听
         constant = new Constant();//实例化常量类
+        coords = new Coords();
+        coordsUtil = new CoordsUtil();
     }
 
     @Override

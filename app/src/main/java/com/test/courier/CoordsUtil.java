@@ -1,6 +1,12 @@
 package com.test.courier;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -18,7 +24,15 @@ public class CoordsUtil {
     private MyLocationListener myLocationListener;//地图数据监听
     private Coords coords;//坐标实体类
 
-    private void getLongitude(Context context){
+    public void getLongitude(Context context){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            //定位权限
+            String[] locationPermission = {Manifest.permission.ACCESS_FINE_LOCATION};
+            if (ContextCompat.checkSelfPermission(context, locationPermission[0]) != PackageManager.PERMISSION_GRANTED) {
+                // 如果没有授予该权限，就去提示用户请求
+                ActivityCompat.requestPermissions((Activity) context, locationPermission, 300);
+            }
+        }
         myLocationListener = new MyLocationListener();
         locationClient = new LocationClient(context);
         locationClient.registerLocationListener(myLocationListener);//注册监听
