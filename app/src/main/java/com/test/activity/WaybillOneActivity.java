@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.test.courier.R;
 import com.test.entity.Constant;
 import com.test.sqlite.UserinfoDBUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +32,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 //-----------待接单运单详情页--------------
 public class WaybillOneActivity extends Activity implements View.OnClickListener {
@@ -36,7 +41,9 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
     private String address,freightInsurance,leaveMessage,money,orderid,orderTime,phone
             ,freight,marketName,longitude,latitude,distance,goodsName,distanceEnd,goodUrl,number;
     private TextView orderid_text,freight_text,distance_text,distanceend_text//运单号，配送费，我的位置与发货点距离,发货点与收货点距离
-            ,goodsName_text,marketName_text,address_text,receive_btn;
+            ,goodsName_text,marketName_text,address_text,receive_btn,freightInsurance_text//货物名，取货地址，送货地址，接单按钮，货物保险
+            ,money_text;//运单总金额
+    private RoundedImageView goods_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,7 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
         getintentData();//获取来自intent的数据
         init();//初始化控件
         initData();//初始化填充数据
+        initImage();//初始化货物图片
     }
 
     private void getintentData() {//获取来自intent的数据
@@ -81,7 +89,9 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
         goodsName_text = findViewById(R.id.goodsName_text);
         marketName_text = findViewById(R.id.marketName_text);
         address_text = findViewById(R.id.address_text);
-
+        freightInsurance_text = findViewById(R.id.freightInsurance_text);
+        money_text = findViewById(R.id.money_text);
+        goods_img = findViewById(R.id.goods_img);
 
         receive_btn = findViewById(R.id.receive_btn);
         receive_btn.setOnClickListener(this);
@@ -95,6 +105,13 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
         goodsName_text.setText(goodsName);
         marketName_text.setText(marketName);
         address_text.setText(address);
+        freightInsurance_text.setText(freightInsurance);
+        money_text.setText(money);
+    }
+
+    private void initImage() {//初始化货物图片
+        GoodsImageTask goodsImageTask = new GoodsImageTask(goods_img);
+        goodsImageTask.execute(goodUrl);
     }
 
     @Override
@@ -107,6 +124,36 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
                 AddOrderTask addOrderTask = new AddOrderTask();//开启接单线程，传入运单号
                 addOrderTask.execute(orderid);
                 break;
+        }
+    }
+
+    private class GoodsImageTask extends AsyncTask<String,Void,Bitmap>{//一个用于下载图片的线程,传入值图片url，返回值Bitmap图片
+        RoundedImageView roundedImageView;
+
+        public GoodsImageTask(RoundedImageView roundedImageView) {
+            this.roundedImageView = roundedImageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String picurl = strings[0];
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder().url(picurl).build();
+            Bitmap bitmap = null;
+            try {
+                ResponseBody responseBody = okHttpClient.newCall(request).execute().body();
+                InputStream inputStream = responseBody.byteStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            roundedImageView.setImageBitmap(bitmap);
         }
     }
 
