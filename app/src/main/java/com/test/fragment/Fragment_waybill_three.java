@@ -272,10 +272,9 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
                 @Override
                 public void onClick(View v) {
                     String phone = songwaybills.get(position).getPhone();//手机号
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_CALL);
-                    Uri phoneNum = Uri.parse("tel:"+ phone);
-                    intent.setData(phoneNum);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    Uri data = Uri.parse("tel:" + phone);
+                    intent.setData(data);
                     startActivity(intent);
                 }
             });

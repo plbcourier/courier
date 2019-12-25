@@ -280,10 +280,9 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
                 @Override
                 public void onClick(View v) {
                     String phone = quwaybills.get(position).getPhone();//手机号
-                    Intent intent = new Intent();
-                    intent.setAction(Intent.ACTION_CALL);
-                    Uri phoneNum = Uri.parse("tel:"+ phone);
-                    intent.setData(phoneNum);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    Uri data = Uri.parse("tel:" + phone);
+                    intent.setData(data);
                     startActivity(intent);
                 }
             });

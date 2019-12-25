@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -121,7 +122,10 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
 
                 break;
             case R.id.phone_btn://拨打电话
-
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + phone);
+                intent.setData(data);
+                startActivity(intent);
                 break;
             case R.id.pick_btn://确认取货
                 PickGoodsTask pickGoodsTask = new PickGoodsTask();
