@@ -189,7 +189,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="起点"
+            android:text="取货点"
             android:textSize="18sp"
             android:textColor="#2d2d2d"
             android:layout_marginLeft="10dp"/>
@@ -223,7 +223,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="终点"
+            android:text="送货点"
             android:textSize="18sp"
             android:textColor="#2d2d2d"
             android:layout_marginLeft="10dp"/>

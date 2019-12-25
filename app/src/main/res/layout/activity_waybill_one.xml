@@ -255,6 +255,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="运单时间："
+                    android:textSize="18sp"
+                    android:textColor="#2b2b2b"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/orderTime_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2019"
+                    android:textSize="18sp"
+                    android:textColor="#2b2b2b"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="物品："
                     android:textSize="18sp"
                     android:textColor="#23a49b"
@@ -265,6 +290,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="牛奶"
+                    android:textSize="18sp"
+                    android:textColor="#5c5c5c"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="物品数量："
+                    android:textSize="18sp"
+                    android:textColor="#23a49b"
+                    android:layout_marginLeft="5dp"/>
+
+                <TextView
+                    android:id="@+id/number_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XX"
                     android:textSize="18sp"
                     android:textColor="#5c5c5c"/>
 

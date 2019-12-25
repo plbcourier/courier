@@ -42,7 +42,7 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
             ,freight,marketName,longitude,latitude,distance,goodsName,distanceEnd,goodUrl,number;
     private TextView orderid_text,freight_text,distance_text,distanceend_text//运单号，配送费，我的位置与发货点距离,发货点与收货点距离
             ,goodsName_text,marketName_text,address_text,receive_btn,freightInsurance_text//货物名，取货地址，送货地址，接单按钮，货物保险
-            ,money_text;//运单总金额
+            ,money_text,orderTime_text,number_text;//运单总金额，运单时间，物品数量
     private RoundedImageView goods_img;
 
     @Override
@@ -92,6 +92,8 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
         freightInsurance_text = findViewById(R.id.freightInsurance_text);
         money_text = findViewById(R.id.money_text);
         goods_img = findViewById(R.id.goods_img);
+        orderTime_text = findViewById(R.id.orderTime_text);
+        number_text = findViewById(R.id.number_text);
 
         receive_btn = findViewById(R.id.receive_btn);
         receive_btn.setOnClickListener(this);
@@ -107,6 +109,8 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
         address_text.setText(address);
         freightInsurance_text.setText(freightInsurance);
         money_text.setText(money);
+        orderTime_text.setText(orderTime);
+        number_text.setText(number);
     }
 
     private void initImage() {//初始化货物图片
