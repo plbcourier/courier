@@ -415,7 +415,7 @@
                 android:textSize="16sp"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:background="#F0AD4E"
+                android:background="@drawable/receive_btn_bg"
                 android:layout_margin="10dp"
                 android:padding="10dp"/>
 
