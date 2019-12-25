@@ -143,6 +143,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         String status = jsonObject.getString("status");//骑手上下班状态
         String leftMoney = jsonObject.getString("leftMoney");//账户余额
         String password = jsonObject.getString("password");//密码
+        String icon = jsonObject.getString("icon");//头像
         UserinfoDBUtil userinfoDBUtil = new UserinfoDBUtil();//数据库工具类
         SQLiteDatabase database = userinfoDBUtil.getSqLiteDatabase(LoginActivity.this);//获取用户信息数据库
         String sql = null;
@@ -150,11 +151,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         Cursor cursor = database.query("userinfo",null,"userid = ?",new String[]{id},null,null,null);
         if (cursor.getCount()==0){//如果本地数据库没有当前用户，则插入一条数据
             sql = "insert into userinfo values(null,?,?,?,?,?,?,?)";//插入登录的骑手的数据
-            database.execSQL(sql,new String[]{id,phone,password,name,status,leftMoney,null});//传入参数
+            database.execSQL(sql,new String[]{id,phone,password,name,status,leftMoney,icon});//传入参数
         }else{//否则修改数据
-            sql = "update userinfo set phone = ? , password = ? , name = ? , status = ? ,leftmoney = ?" +
+            sql = "update userinfo set phone = ? , password = ? , name = ? , status = ? ,leftmoney = ? , imagepath = ?" +
                     "where userid = ?";
-            database.execSQL(sql,new String[]{phone,password,name,status,leftMoney,id});
+            database.execSQL(sql,new String[]{phone,password,name,status,leftMoney,icon,id});
         }
 
         sql = "update userinfo set userid = ? where _id = 1";//更新userinfo表_id为0的数据，将userid列的值，设为登录的用户的id
