@@ -43,6 +43,8 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
         number = bundle.getString("number");//货物数量
         goodUrl = bundle.getString("goodUrl");//货物图片链接
 
+        date = dealDateFormat(date);//处理时间格式
+
         back_img = findViewById(R.id.back_img);
         back_img.setOnClickListener(this);
     }
