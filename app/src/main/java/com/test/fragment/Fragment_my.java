@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.test.activity.FeedbackActivity;
 import com.test.activity.LoginActivity;
 import com.test.activity.MessageActivity;
@@ -46,6 +47,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     private ImageView tuichu;//退出
     private TextView name_text;//名字
     private TextView leftmoney_text;//余额
+    private RoundedImageView head_img;//头像
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,6 +104,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         tuichu=view.findViewById(R.id.tuichu);//获取【退出登陆】控件
         name_text = view.findViewById(R.id.name);//名字
         leftmoney_text = view.findViewById(R.id.leftmoney_text);//余额
+        head_img = view.findViewById(R.id.head_img);//头像
 
         button.setOnClickListener(this);
         button1.setOnClickListener(this);
@@ -114,12 +117,27 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         sezhi.setOnClickListener(this);
         zichan.setOnClickListener(this);
         tuichu.setOnClickListener(this);
+        head_img.setOnClickListener(this);
+        name_text.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        String userid = null;
         Intent intent;
         switch (v.getId()){
+            case R.id.head_img://头像
+            case R.id.name://昵称
+            case R.id.zhongxin://个人中心
+                userid = getUserid();//获取当前用户userid
+                if (userid.equals("0")){//无用户登录时，跳转登录
+                    intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }else {//有用户登录时，跳转个人中心
+                    intent = new Intent(getActivity(),MyCenterActivity.class);
+                    startActivity(intent);
+                }
+                break;
             //登陆
             case R.id.button:
                 intent = new Intent(getActivity(),LoginActivity.class);
@@ -132,23 +150,36 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 break;
                 //意见反馈
             case R.id.fankui:
-                intent = new Intent(getActivity(),FeedbackActivity.class);
-                startActivity(intent);
+                userid = getUserid();//获取当前用户userid
+                if (userid.equals("0")){//无用户登录时，跳转登录
+                    intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }else {//有用户登录时，跳转建议反馈
+                    intent = new Intent(getActivity(),FeedbackActivity.class);
+                    startActivity(intent);
+                }
                 break;
                 //我的消息
             case R.id.xiaoxi:
-                intent = new Intent(getActivity(),MessageActivity.class);
-                startActivity(intent);
+                userid = getUserid();//获取当前用户userid
+                if (userid.equals("0")){//无用户登录时，跳转登录
+                    intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }else {//有用户登录时，跳转我的消息
+                    intent = new Intent(getActivity(),MessageActivity.class);
+                    startActivity(intent);
+                }
                 break;
                 //系统通知
             case R.id.tongzhi:
-                intent = new Intent(getActivity(),NotifyActivity.class);
-                startActivity(intent);
-                break;
-                //个人中心
-            case R.id.zhongxin:
-                intent = new Intent(getActivity(),MyCenterActivity.class);
-                startActivity(intent);
+                userid = getUserid();//获取当前用户userid
+                if (userid.equals("0")){//无用户登录时，跳转登录
+                    intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }else {//有用户登录时，跳转我的消息
+                    intent = new Intent(getActivity(),NotifyActivity.class);
+                    startActivity(intent);
+                }
                 break;
                 //设置
             case R.id.shezhi:
@@ -157,8 +188,14 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 break;
                 //我的资产
             case R.id.zichan:
-                intent = new Intent(getActivity(), PropertyActivity.class);
-                startActivity(intent);
+                userid = getUserid();//获取当前用户userid
+                if (userid.equals("0")){//无用户登录时，跳转登录
+                    intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+                }else {//有用户登录时，跳转我的资产
+                    intent = new Intent(getActivity(), PropertyActivity.class);
+                    startActivity(intent);
+                }
                 break;
                 //退出登陆
             case R.id.tuichu:
@@ -192,5 +229,15 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         }
         database.close();
         cursor.close();
+    }
+
+    private String getUserid(){
+        UserinfoDBUtil userinfoDBUtil = new UserinfoDBUtil();//userinfo数据库工具类
+        SQLiteDatabase database = userinfoDBUtil.getSqLiteDatabase(getActivity());//获取userinfo数据库
+        //查询当前登录用户的userid
+        Cursor cursor = database.query("userinfo",null,null,null,null,null,null);
+        cursor.moveToFirst();
+        String userid = cursor.getString(1);
+        return userid;
     }
 }
