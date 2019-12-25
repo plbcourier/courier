@@ -85,6 +85,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         start_edt_address.setText("夕阳红公寓");
         end_edt_city.setText("衡阳市");
         end_edt_address.setText("五一市场");
+        btnDrive.performClick();
     }
     private void initMyLocation() {
         //缩放地图

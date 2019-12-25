@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     protected void onPause() {
         super.onPause();
-        if(uploadLocationTask.getStatus() != null && uploadLocationTask.getStatus() ==AsyncTask.Status.RUNNING){
+        /*if(uploadLocationTask.getStatus() != null && uploadLocationTask.getStatus() ==AsyncTask.Status.RUNNING){
             uploadLocationTask.cancel(true);
-        }
+        }*/
     }
 
     @Override

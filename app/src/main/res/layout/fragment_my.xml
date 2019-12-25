@@ -38,6 +38,7 @@
             android:gravity="center"
             >
              <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/head_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@mipmap/defaultheadicon"
