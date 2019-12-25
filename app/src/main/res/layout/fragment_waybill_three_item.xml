@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/fragment_waybill_item_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,7 +145,7 @@
         android:textSize="16sp"
         android:gravity="center"
         android:textColor="#ffffff"
-        android:background="#F0AD4E"
+        android:background="@drawable/receive_btn_bg"
         android:layout_margin="10dp"
         android:padding="10dp"/>
 
