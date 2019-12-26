@@ -59,7 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/waybill_item"
-                        android:layout_marginLeft="15dp"/>
+                        android:layout_marginLeft="10dp"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -110,6 +110,34 @@
                         </LinearLayout>
 
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运单时间："
+                        android:textSize="18sp"
+                        android:textColor="#2b2b2b"
+                        android:layout_marginLeft="5dp"/>
+
+                    <TextView
+                        android:id="@+id/orderTime_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2019"
+                        android:textSize="18sp"
+                        android:textColor="#2b2b2b"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -229,7 +257,8 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
+                    android:paddingBottom="5dp"
+                    android:layout_marginBottom="3dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -250,31 +279,6 @@
                         android:layout_height="wrap_content"
                         android:text="0.00"
                         android:textSize="16sp"
-                        android:textColor="#2b2b2b"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="运单时间："
-                        android:textSize="18sp"
-                        android:textColor="#2b2b2b"
-                        android:layout_marginLeft="5dp"/>
-
-                    <TextView
-                        android:id="@+id/orderTime_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2019"
-                        android:textSize="18sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -310,7 +314,7 @@
                         android:layout_height="wrap_content"
                         android:text="牛奶"
                         android:textSize="18sp"
-                        android:textColor="#5c5c5c"/>
+                        android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
 
@@ -338,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:text="XX"
                         android:textSize="18sp"
-                        android:textColor="#5c5c5c"/>
+                        android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
 

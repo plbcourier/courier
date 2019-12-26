@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:text="牛奶"
             android:textSize="18sp"
-            android:textColor="#5c5c5c"/>
+            android:textColor="#2b2b2b"/>
 
     </LinearLayout>
 
