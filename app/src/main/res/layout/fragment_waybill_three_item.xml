@@ -116,25 +116,24 @@
             android:id="@+id/navi_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/navi_icon"
             android:text="开始导航"
-            android:textSize="20sp"
-            android:textColor="#2d2d2d"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
+            android:textSize="14sp"
+            android:textColor="#2b2b2b"
+            android:gravity="center_horizontal"
+            android:drawableTop="@mipmap/navi64_icon"
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/consignee_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/phone_icon"
             android:text="联系收货人"
-            android:textSize="20sp"
-            android:textColor="#2d2d2d"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            />
+            android:textSize="14sp"
+            android:textColor="#2b2b2b"
+            android:gravity="center_horizontal"
+            android:drawableTop="@mipmap/phone64_icon"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 
     <TextView
