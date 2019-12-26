@@ -3,6 +3,7 @@ package com.test.fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,16 @@ import com.test.activity.RegisterActivity;
 import com.test.activity.SettingActivity;
 import com.test.activity.VerifyActivity;
 import com.test.courier.R;
+import com.test.entity.Constant;
 import com.test.sqlite.UserinfoDBUtil;
+
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2019/12/10.
@@ -50,6 +60,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     private TextView leftmoney_text;//余额
     private RoundedImageView head_img;//头像
     private ImageView yanzheng;//身份证验证
+    private Constant constant;//常量类
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,6 +118,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         leftmoney_text = view.findViewById(R.id.leftmoney_text);//余额
         head_img = view.findViewById(R.id.head_img);//头像
         yanzheng=view.findViewById(R.id.yanzheng);//身份证验证
+        constant = new Constant();
 
 //        button.setOnClickListener(this);
 //        button1.setOnClickListener(this);
@@ -128,6 +140,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         String userid = null;
         Intent intent;
+        CommuterTask commuterTask;
         switch (v.getId()){
             case R.id.head_img://头像
             case R.id.name://昵称
@@ -210,14 +223,58 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 break;
                 //上班
             case R.id.shanban:
+                commuterTask = new CommuterTask();
+                commuterTask.execute("0");
                 textView.setBackgroundResource(R.drawable.bg);
                 textView1.setBackgroundResource(R.drawable.bg1);
                 break;
                 //下班
             case R.id.xiaban:
+                commuterTask = new CommuterTask();
+                commuterTask.execute("1");
                 textView.setBackgroundResource(R.drawable.bg1);
                 textView1.setBackgroundResource(R.drawable.bg);
                 break;
+        }
+    }
+
+    private class CommuterTask extends AsyncTask<String,Void,String>{//改变上下班状态
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String userid = getUserid();
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new FormBody.Builder()
+                    .add("id",userid)
+                    .add("status",strings[0])
+                    .build();
+            Request request = new Request.Builder()
+                    .url(constant.PREFIX+constant.COMMUTER)
+                    .method("POST",requestBody)
+                    .build();
+            Response response = null;
+            String jsonstr = null;
+            try {
+                response = client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                jsonstr = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return jsonstr;
+        }
+
+        @Override
+        protected void onPostExecute(String jsonstr) {
+            super.onPostExecute(jsonstr);
+            if (jsonstr.indexOf("true")!=-1){
+                //Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(getActivity(), "请求超时", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -238,7 +295,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         cursor.close();
     }
 
-    private String getUserid(){
+    private String getUserid(){//获取当前登录用户id
         UserinfoDBUtil userinfoDBUtil = new UserinfoDBUtil();//userinfo数据库工具类
         SQLiteDatabase database = userinfoDBUtil.getSqLiteDatabase(getActivity());//获取userinfo数据库
         //查询当前登录用户的userid
