@@ -245,7 +245,7 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
     }
 
     @Override
-    public void takeSuccess(TResult result) {      //获取头像的图片并显示出来
+    public void takeSuccess(TResult result) {//获取头像的图片并显示出来
         super.takeSuccess(result);
         TImage image = result.getImage();   //成功获取图片
         Bitmap bitmap = BitmapFactory.decodeFile(image.getOriginalPath());   //修改图片
