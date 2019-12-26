@@ -312,15 +312,15 @@
                 android:layout_marginTop="20dp"
                 >
                 <ImageView
-                    android:id="@+id/tuichu"
+                     android:id="@+id/yanzheng"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/tuichu"
+                    android:src="@mipmap/yanzheng"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="退出登录"
+                    android:text="身份证验证"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -332,6 +332,7 @@
             android:gravity="center"
             android:layout_weight="1"
             >
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -350,27 +351,28 @@
                     android:text="设置"
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                >
+                <ImageView
+                    android:id="@+id/tuichu"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/tuichu"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="退出登录"
+                    />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="登录"
-            android:layout_weight="1"
-            />
-        <Button
-            android:id="@+id/button1"
-            android:onClick="register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="注册"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
+
 
 
 </LinearLayout>
