@@ -1,6 +1,11 @@
 package com.test.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -125,11 +130,29 @@ public class WaybillOneActivity extends Activity implements View.OnClickListener
                 finish();
                 break;
             case R.id.receive_btn://接单按钮
-                AddOrderTask addOrderTask = new AddOrderTask();//开启接单线程，传入运单号
-                addOrderTask.execute(orderid);
+                AlertDialog.Builder builder = new AlertDialog.Builder(WaybillOneActivity.this);
+                builder.setTitle("确认接单?");
+
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AddOrderTask addOrderTask = new AddOrderTask();//开启接单线程，传入运单号
+                        addOrderTask.execute(orderid);
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.show();
                 break;
         }
     }
+
 
     private class GoodsImageTask extends AsyncTask<String,Void,Bitmap>{//一个用于下载图片的线程,传入值图片url，返回值Bitmap图片
         RoundedImageView roundedImageView;
