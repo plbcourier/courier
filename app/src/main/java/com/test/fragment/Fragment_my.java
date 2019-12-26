@@ -30,6 +30,9 @@ import com.test.courier.R;
 import com.test.entity.Constant;
 import com.test.sqlite.UserinfoDBUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.FormBody;
@@ -61,6 +64,8 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     private RoundedImageView head_img;//头像
     private ImageView yanzheng;//身份证验证
     private Constant constant;//常量类
+    private TextView count_text;//总单数
+    private TextView countday_text;//今日单数
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -95,6 +100,8 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 textView.setBackgroundResource(R.drawable.bg1);
                 textView1.setBackgroundResource(R.drawable.bg);
             }
+            GetCountTask getCountTask = new GetCountTask();
+            getCountTask.execute();
 
         }
 
@@ -119,6 +126,8 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         head_img = view.findViewById(R.id.head_img);//头像
         yanzheng=view.findViewById(R.id.yanzheng);//身份证验证
         constant = new Constant();
+        count_text = view.findViewById(R.id.count_text);//总单数
+        countday_text = view.findViewById(R.id.countday_text);//今日单数
 
 //        button.setOnClickListener(this);
 //        button1.setOnClickListener(this);
@@ -275,6 +284,55 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
             }else {
                 Toast.makeText(getActivity(), "请求超时", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    private class GetCountTask extends AsyncTask<Void,Void,String>{//获取单数
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            String userid = getUserid();
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new FormBody.Builder()
+                    .add("deliveryId",userid)
+                    .build();
+            Request request = new Request.Builder()
+                    .url(constant.PREFIX+constant.GETCOUNT)
+                    .method("POST",requestBody)
+                    .build();
+            Response response = null;
+            String jsonstr = null;
+            try {
+                response = client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                jsonstr = response.body().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return jsonstr;
+        }
+
+        @Override
+        protected void onPostExecute(String jsonstr) {
+            super.onPostExecute(jsonstr);
+            JSONObject jsonObject = null;
+            String count = null;
+            String countDay = null;
+            String money = null;
+            try {
+                jsonObject = new JSONObject(jsonstr);
+                count = jsonObject.getString("count");
+                countDay = jsonObject.getString("countDay");
+                money = jsonObject.getString("money");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            count_text.setText(count);
+            countday_text.setText(countDay);
+            leftmoney_text.setText(money);
         }
     }
 
