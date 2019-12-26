@@ -7,6 +7,28 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/text_blue"
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/back_img_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始导航"
+            android:textSize="18sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/l1"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
@@ -15,12 +37,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="起点："/>
+            android:text="起点："
+            android:textSize="18dp"
+            android:textColor="#000"
+            />
         <EditText
             android:id="@+id/Start_Edt_City"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:hint="市区"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/editor_style"
+            />
         <EditText
             android:id="@+id/Start_Edt_Address"
             android:layout_weight="2"
@@ -28,7 +55,9 @@
             android:hint="地址"
             android:maxLines="1"
             android:singleLine="true"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/editor_style"
+            />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/l2"
@@ -40,12 +69,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="终点："/>
+            android:text="终点："
+            android:textSize="18dp"
+            android:textColor="#000"
+            />
         <EditText
             android:id="@+id/End_Edt_City"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:hint="市区"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/editor_style"
+            />
         <EditText
             android:id="@+id/End_Edt_Address"
             android:layout_weight="2"
@@ -54,13 +88,19 @@
             android:layout_height="match_parent"
             android:maxLines="1"
             android:singleLine="true"
+            android:background="@drawable/editor_style"
             />
     </LinearLayout>
     <Button
         android:id="@+id/btn_drive"
         android:text="开始导航"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_style"
+        android:textSize="18dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        />
     <com.baidu.mapapi.map.MapView
         android:id="@+id/baiduMapView"
         android:layout_width="match_parent"

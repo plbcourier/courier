@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -46,7 +47,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     private MapView mMapView = null;
     private BaiduMap mBaiduMap = null;
     private Context context;
-
+    private ImageView back_img;
     //定位相关
     private double mLatitude;
     private double mLongtitude;
@@ -195,6 +196,8 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         start_edt_address = (EditText)findViewById(R.id.Start_Edt_Address);
         end_edt_city = (EditText)findViewById(R.id.End_Edt_City);
         end_edt_address = (EditText)findViewById(R.id.End_Edt_Address);
+        back_img=findViewById(R.id.back_img_nav);
+        back_img.setOnClickListener(this);
         btnDrive.setOnClickListener(this);
     }
 
@@ -215,6 +218,12 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                 PlanNode stNode = PlanNode.withLocation(startPoint);
                 PlanNode enNode = PlanNode.withLocation(endPoint);*/
                 mSearch.drivingSearch((new DrivingRoutePlanOption()).from(stNode).to(enNode));
+                break;
+            case R.id.back_img_nav:
+                finish();
+                break;
+                default:
+                    break;
         }
     }
     //定位
