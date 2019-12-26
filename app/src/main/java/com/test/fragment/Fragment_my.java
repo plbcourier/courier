@@ -24,6 +24,7 @@ import com.test.activity.NotifyActivity;
 import com.test.activity.PropertyActivity;
 import com.test.activity.RegisterActivity;
 import com.test.activity.SettingActivity;
+import com.test.activity.VerifyActivity;
 import com.test.courier.R;
 import com.test.sqlite.UserinfoDBUtil;
 
@@ -34,8 +35,8 @@ import com.test.sqlite.UserinfoDBUtil;
 //--------------我的---------------
 public class Fragment_my extends Fragment implements View.OnClickListener{
     private View view;
-    public Button button;//登陆
-    public Button button1;//注册
+//    public Button button;//登陆
+//    public Button button1;//注册
     public ImageView fankui;//反馈
     public ImageView xiaoxi;//我的消息
     public ImageView tongzhi;//系统通知
@@ -48,6 +49,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     private TextView name_text;//名字
     private TextView leftmoney_text;//余额
     private RoundedImageView head_img;//头像
+    private ImageView yanzheng;//身份证验证
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,7 +66,6 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         //查询当前登录用户的userid
         Cursor cursor = database.query("userinfo",null,null,null,null,null,null);
         cursor.moveToFirst();
-        //Toast.makeText(getActivity(), cursor.getString(1)+"", Toast.LENGTH_SHORT).show();
         String userid = cursor.getString(1);
         if (!"0".equals(userid)){//有用户登录
             cursor = database.query("userinfo",null,"userid = ?",new String[]{userid},null,null,null);
@@ -91,8 +92,8 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     }
 
     private void init() {//初始化
-        button=view.findViewById(R.id.button);//获取【上班】控件
-        button1=view.findViewById(R.id.button1);//获取【下班】控件
+//        button=view.findViewById(R.id.button);//获取【上班】控件
+//        button1=view.findViewById(R.id.button1);//获取【下班】控件
         fankui=view.findViewById(R.id.fankui);//获取【反馈】控件
         xiaoxi=view.findViewById(R.id.xiaoxi);//获取【我的消息】控件
         tongzhi=view.findViewById(R.id.tongzhi);//获取【通知】控件
@@ -105,9 +106,10 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         name_text = view.findViewById(R.id.name);//名字
         leftmoney_text = view.findViewById(R.id.leftmoney_text);//余额
         head_img = view.findViewById(R.id.head_img);//头像
+        yanzheng=view.findViewById(R.id.yanzheng);//身份证验证
 
-        button.setOnClickListener(this);
-        button1.setOnClickListener(this);
+//        button.setOnClickListener(this);
+//        button1.setOnClickListener(this);
         fankui.setOnClickListener(this);
         xiaoxi.setOnClickListener(this);
         tongzhi.setOnClickListener(this);
@@ -119,6 +121,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         tuichu.setOnClickListener(this);
         head_img.setOnClickListener(this);
         name_text.setOnClickListener(this);
+        yanzheng.setOnClickListener(this);
     }
 
     @Override
@@ -138,16 +141,16 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
-            //登陆
-            case R.id.button:
-                intent = new Intent(getActivity(),LoginActivity.class);
-                startActivity(intent);
-                break;
+//            //登陆
+//            case R.id.button:
+//                intent = new Intent(getActivity(),LoginActivity.class);
+//                startActivity(intent);
+//                break;
                 //注册
-            case R.id.button1:
-                intent = new Intent(getActivity(),RegisterActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.button1:
+//                intent = new Intent(getActivity(),RegisterActivity.class);
+//                startActivity(intent);
+//                break;
                 //意见反馈
             case R.id.fankui:
                 userid = getUserid();//获取当前用户userid
@@ -196,6 +199,10 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                     intent = new Intent(getActivity(), PropertyActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.yanzheng:
+                intent=new Intent(getActivity(), VerifyActivity.class);
+                startActivity(intent);
                 break;
                 //退出登陆
             case R.id.tuichu:

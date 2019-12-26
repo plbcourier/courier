@@ -1,6 +1,8 @@
 package com.test.fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -310,9 +312,26 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
             pick_btn.setOnClickListener(new View.OnClickListener() {//确认取货
                 @Override
                 public void onClick(View v) {
-                    String id = quwaybills.get(position).getId();
-                    PickGoodsTask pickGoodsTask = new PickGoodsTask();//取货线程，传入运单id
-                    pickGoodsTask.execute(id);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("确认取货?");
+
+                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String id = quwaybills.get(position).getId();
+                            PickGoodsTask pickGoodsTask = new PickGoodsTask();//取货线程，传入运单id
+                            pickGoodsTask.execute(id);
+                        }
+                    });
+
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    builder.show();
                 }
             });
 

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 26
     defaultConfig {
         applicationId "com.test.courier"
         minSdkVersion 19
@@ -20,7 +20,7 @@ android {
         main {
             jniLibs.srcDirs = ['Libs']
         }
-        }
+    }
 }
 
 configurations.all {
@@ -48,6 +48,8 @@ dependencies {
     implementation files('libs/httpmime-4.1.2.jar')
     implementation files('libs/IndoorscapeAlbumPlugin.jar')
 }
+
+
 
 
 

@@ -1,6 +1,8 @@
 package com.test.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -125,8 +127,25 @@ public class WaybillThreeActivity extends Activity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.delivery_btn://确认送达按钮
-                DeliveryTask deliveryTask = new DeliveryTask();
-                deliveryTask.execute(id,orderid);
+                AlertDialog.Builder builder = new AlertDialog.Builder(WaybillThreeActivity.this);
+                builder.setTitle("确认送达?");
+
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DeliveryTask deliveryTask = new DeliveryTask();
+                        deliveryTask.execute(id,orderid);
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                
+                builder.show();
                 break;
         }
     }
