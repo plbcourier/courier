@@ -16,9 +16,10 @@ public class RegardingPlbActivity extends AppCompatActivity {
         setContentView(R.layout.activity_regarding_plb);
         android.support.v7.app.ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
+        imageView=findViewById(R.id.back_img);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 finish();
             }
         });

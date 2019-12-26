@@ -33,9 +33,9 @@
         android:layout_below="@id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wi-Fi环境下自动下载美团安装包"
+        android:text="Wi-Fi环境下自动下载批零帮安装包"
         android:textColor="#000"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_margin="10dp"
         />
     <Switch
