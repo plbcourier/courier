@@ -235,7 +235,6 @@
                         android:id="@+id/goods_img"
                         android:layout_width="320dp"
                         android:layout_height="180dp"
-                        android:src="@mipmap/default_goods_img"
                         app:riv_corner_radius="10dp"
                         android:layout_marginTop="5dp"/>
                 </LinearLayout>
