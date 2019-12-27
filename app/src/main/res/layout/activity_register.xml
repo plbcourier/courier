@@ -44,38 +44,40 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="100dp">
             <com.test.courier.ClearEditText
-                android:id="@+id/name"
+                android:id="@+id/name_edit"
                 android:background="@drawable/if_the_selected_input_box"
                 android:layout_height="50dp"
                 android:layout_width="250dp"
                 android:textColor="@drawable/if_the_selected_font_color_replace"
                 android:drawableRight="@mipmap/cuo"
-                android:hint="输入名字"
+                android:hint="请输入姓名"
                 android:drawableLeft="@drawable/if_the_selected_name"
                 android:textCursorDrawable="@drawable/cursor" />
 
 
         <com.test.courier.ClearEditText
-            android:id="@+id/number"
+            android:id="@+id/phone_edit"
             android:background="@drawable/if_the_selected_input_box"
             android:layout_height="50dp"
             android:layout_width="250dp"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/if_the_selected_phone_replace"
             android:drawableRight="@mipmap/cuo"
-            android:hint="请填写手机号"
+            android:hint="请输入手机号"
             android:textColor="@drawable/if_the_selected_font_color_replace"
-            android:textCursorDrawable="@null"/>
+            android:textCursorDrawable="@null"
+            android:inputType="number"
+            android:maxLength="11"/>
 
         <com.test.courier.ClearEditText
-            android:id="@+id/pwd"
+            android:id="@+id/pwd_edit"
             android:background="@drawable/if_the_selected_input_box"
             android:layout_height="50dp"
             android:layout_width="250dp"
             android:textColor="@drawable/if_the_selected_font_color_replace"
             android:layout_marginTop="20dp"
             android:drawableRight="@mipmap/cuo"
-            android:hint="设置密码"
+            android:hint="请输入密码"
             android:drawableLeft="@drawable/if_the_selected_pwd_replace"
             android:textCursorDrawable="@drawable/cursor"
             android:inputType="textPassword"/>
@@ -84,28 +86,32 @@
                 android:layout_width="250dp"
                 android:orientation="horizontal">
                 <EditText
+                    android:id="@+id/captcha_edit"
                     android:background="@drawable/if_the_selected_input_box"
                     android:layout_height="50dp"
-                    android:layout_width="125dp"
-                    android:id="@+id/up_code"
+                    android:layout_width="120dp"
                     android:textColor="#000"
                     android:gravity="center"
                     android:layout_marginTop="20dp"
                     android:hint="验证码"
-                    android:textCursorDrawable="@null"/>
+                    android:textCursorDrawable="@null"
+                    android:inputType="number"
+                    android:maxLength="6"/>
                 <Button
-                    android:id="@+id/up_codebt"
+                    android:id="@+id/captcha_btn"
                     android:background="@drawable/bg_message"
                     android:layout_height="50dp"
-                    android:layout_width="125dp"
+                    android:layout_width="120dp"
                     android:gravity="center"
                     android:layout_marginTop="18dp"
                     android:hint="发送验证码"
-                    android:textCursorDrawable="@null"/>
+                    android:textColor="#2b2b2b"
+                    android:textCursorDrawable="@null"
+                    android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
         <Button
-            android:id="@+id/zhuce"
+            android:id="@+id/zhuce_btn"
             android:background="@mipmap/register_btn"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"

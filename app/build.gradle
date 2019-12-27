@@ -1,5 +1,18 @@
 apply plugin: 'com.android.application'
 
+// mode下添加插件：
+apply plugin: 'com.mob.sdk'
+MobSDK {
+    appKey "2d02392a39e80"
+    appSecret "5060cfa426699b244fa1b445d94c3b53"
+
+    SMSSDK {
+        version "3.2.1"
+        gui false
+    }
+
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
