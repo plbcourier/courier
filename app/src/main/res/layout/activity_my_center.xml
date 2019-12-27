@@ -34,7 +34,8 @@
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="80dp"
@@ -53,7 +54,8 @@
             android:id="@+id/head_portrait"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_weight="0"/>
+            android:layout_weight="0"
+            app:riv_oval="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,7 +68,8 @@
         android:id="@+id/line2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="80dp"
@@ -98,7 +101,8 @@
         android:id="@+id/line3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="80dp"
@@ -124,31 +128,4 @@
         android:background="@color/text_blue">
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:text="其他功能"
-            android:textSize="24sp"
-            android:gravity="center"/>
-        <LinearLayout
-            android:layout_width="259dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-        <ImageView
-            android:id="@+id/other"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_weight="0"
-            android:src="@mipmap/other"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/text_blue">
-    </LinearLayout>
 </LinearLayout>

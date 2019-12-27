@@ -1,8 +1,12 @@
 package com.test.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,12 +38,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /**
  * Created by Administrator on 2019/12/10.
@@ -48,8 +54,6 @@ import okhttp3.Response;
 //--------------我的---------------
 public class Fragment_my extends Fragment implements View.OnClickListener{
     private View view;
-//    public Button button;//登陆
-//    public Button button1;//注册
     public ImageView fankui;//反馈
     public ImageView xiaoxi;//我的消息
     public ImageView tongzhi;//系统通知
@@ -92,7 +96,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
             String leftmoney = cursor.getString(6);//当前账户余额
             String imagepath = cursor.getString(7);//头像路径
             name_text.setText(name);
-            leftmoney_text.setText(leftmoney);
+            //leftmoney_text.setText(leftmoney);
             if (status.equals("0")){//0上班  1下班
                 textView.setBackgroundResource(R.drawable.bg);
                 textView1.setBackgroundResource(R.drawable.bg1);
@@ -102,7 +106,8 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
             }
             GetCountTask getCountTask = new GetCountTask();
             getCountTask.execute();
-
+            HeadImageTask headImageTask = new HeadImageTask(head_img);
+            headImageTask.execute(imagepath);
         }
 
         database.close();
@@ -163,16 +168,6 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                     startActivity(intent);
                 }
                 break;
-//            //登陆
-//            case R.id.button:
-//                intent = new Intent(getActivity(),LoginActivity.class);
-//                startActivity(intent);
-//                break;
-                //注册
-//            case R.id.button1:
-//                intent = new Intent(getActivity(),RegisterActivity.class);
-//                startActivity(intent);
-//                break;
                 //意见反馈
             case R.id.fankui:
                 userid = getUserid();//获取当前用户userid
@@ -228,7 +223,27 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 break;
                 //退出登陆
             case R.id.tuichu:
-                quit();//退出登录
+                userid = getUserid();
+                if (!userid.equals("0")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("退出登录?");
+
+                    builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            quit();//退出登录
+                        }
+                    });
+
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    builder.show();
+                }
                 break;
                 //上班
             case R.id.shanban:
@@ -244,6 +259,36 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 textView.setBackgroundResource(R.drawable.bg1);
                 textView1.setBackgroundResource(R.drawable.bg);
                 break;
+        }
+    }
+
+    private class HeadImageTask extends AsyncTask<String,Void,Bitmap> {//网络获取头像线程,传入值图片url，返回值Bitmap图片
+        RoundedImageView roundedImageView;
+
+        public HeadImageTask(RoundedImageView roundedImageView) {
+            this.roundedImageView = roundedImageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String picurl = strings[0];
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder().url(picurl).build();
+            Bitmap bitmap = null;
+            try {
+                ResponseBody responseBody = okHttpClient.newCall(request).execute().body();
+                InputStream inputStream = responseBody.byteStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            roundedImageView.setImageBitmap(bitmap);
         }
     }
 
@@ -347,6 +392,9 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
             database.execSQL(sql);
             name_text.setText("点击登录");
             leftmoney_text.setText("0.00");
+            count_text.setText("0");
+            countday_text.setText("0");
+            head_img.setImageResource(R.mipmap.defaultheadicon);
             Toast.makeText(getActivity(), "退出成功", Toast.LENGTH_SHORT).show();
         }
         database.close();

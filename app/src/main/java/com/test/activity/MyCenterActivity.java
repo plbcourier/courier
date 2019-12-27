@@ -36,6 +36,7 @@ import com.test.sqlite.UserinfoDBUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -44,6 +45,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 //-------------个人中心-----------------
 public class MyCenterActivity extends TakePhotoActivity implements View.OnClickListener {
@@ -79,6 +81,9 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
         String name = cursor.getString(4);
         username_text.setText(name);
         String imagepath = cursor.getString(7);
+        HeadImageTask headImageTask = new HeadImageTask(touxiang);
+        headImageTask.execute(imagepath);
+
     }
 
     private void init() {
@@ -180,6 +185,36 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
                     }
                 }, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
                 pickerDialog.show();
+        }
+    }
+
+    private class HeadImageTask extends AsyncTask<String,Void,Bitmap> {//网络获取头像线程,传入值图片url，返回值Bitmap图片
+        RoundedImageView roundedImageView;
+
+        public HeadImageTask(RoundedImageView roundedImageView) {
+            this.roundedImageView = roundedImageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            String picurl = strings[0];
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Request request = new Request.Builder().url(picurl).build();
+            Bitmap bitmap = null;
+            try {
+                ResponseBody responseBody = okHttpClient.newCall(request).execute().body();
+                InputStream inputStream = responseBody.byteStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            roundedImageView.setImageBitmap(bitmap);
         }
     }
 
