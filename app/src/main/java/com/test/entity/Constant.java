@@ -21,5 +21,6 @@ public class Constant {//网络接口常量
     public final String CASHOUTS = "cashouts";//提现操作
     public final String LOCATION = "location";//上传坐标
     public final String CHANGENAME = "changeName";//更改昵称
+    public final String UPLOADCARD="uploadCard";//上传身份证
 
 }
