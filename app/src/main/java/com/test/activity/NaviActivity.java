@@ -4,11 +4,14 @@ import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -38,12 +41,13 @@ import com.baidu.mapapi.search.route.TransitRoutePlanOption;
 import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.test.courier.DrivingRouteOverlay;
+import com.test.courier.GPS_Presenter;
 import com.test.courier.MyOrientationListener;
 import com.test.courier.R;
 
 import java.util.ArrayList;
 //开始导航页面
-public class NaviActivity extends AppCompatActivity implements View.OnClickListener {
+public class NaviActivity extends AppCompatActivity implements View.OnClickListener,GPS_Presenter.GPS_Interface {
     private MapView mMapView = null;
     private BaiduMap mBaiduMap = null;
     private Context context;
@@ -51,7 +55,6 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     //定位相关
     private double mLatitude;
     private double mLongtitude;
-    public String NowAddress,NowCity;
     //方向传感器
     private MyOrientationListener mMyOrientationListener;
     private float mCurrentX;
@@ -68,11 +71,14 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnDrive;
     private EditText start_edt_city,start_edt_address,end_edt_city,end_edt_address;
+
+    private GPS_Presenter gps_presenter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_navi);
+        gps_presenter = new GPS_Presenter( this , this ) ;
         this.context = this;
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.baiduMapView);
@@ -161,7 +167,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onGetDrivingRouteResult(DrivingRouteResult result) {
             if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                Toast.makeText(NaviActivity.this, "路线规划:未找到结果,检查输入", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NaviActivity.this, "路线规划:未找到结果,检查输入路线是否正确和GPS状态!", Toast.LENGTH_SHORT).show();
                 //禁止定位
                 isFirstin = false;
             }
@@ -173,7 +179,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
             }
             if (result.error == SearchResult.ERRORNO.NO_ERROR) {
                 mBaiduMap.clear();
-                Toast.makeText(NaviActivity.this, "路线规划:搜索完成", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NaviActivity.this, "路线规划:搜索完成", Toast.LENGTH_LONG).show();
                 DrivingRouteOverlay overlay = new DrivingRouteOverlay(mBaiduMap);
                 overlay.setData(result.getRouteLines().get(0));
                 overlay.addToMap();
@@ -258,7 +264,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (location.getLocType() == BDLocation.TypeGpsLocation) {
                     // GPS定位结果
-                    Toast.makeText(context, "定位:"+location.getAddrStr(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "定位:"+location.getAddrStr(), Toast.LENGTH_LONG).show();
                 } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
                     // 网络定位结果
                     Toast.makeText(context, "定位:"+location.getAddrStr(), Toast.LENGTH_SHORT).show();
@@ -324,5 +330,30 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         mMapView.onDestroy();
         mMapView = null;
         mSearch.destroy();
+        if (gps_presenter!=null){
+            gps_presenter.onDestroy();
+        }
+    }
+    @Override
+    public void gpsSwitchState(boolean gpsOpen) {
+            if (gpsOpen){
+                View view= LayoutInflater.from(NaviActivity.this).inflate(R.layout.tost_layout,null,false);
+                TextView tv=(TextView)view.findViewById(R.id.text_1);
+                tv.setText("手机GPS已打开,可以进行定位功能!");
+                Toast toast=new Toast(NaviActivity.this);
+                toast.setView(view);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+                /*Toast.makeText(this, "手机GPS已打开,可以进行定位功能!", Toast.LENGTH_LONG).show();*/
+            }else{
+                View view= LayoutInflater.from(NaviActivity.this).inflate(R.layout.tost_layout2,null,false);
+                TextView tv=(TextView)view.findViewById(R.id.text_2);
+                tv.setText("手机GPS已关闭,不能进行定位功能,请手动打开!");
+                Toast toast=new Toast(NaviActivity.this);
+                toast.setView(view);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.show();
+         /*       Toast.makeText(this, " 手机GPS已关闭,不能进行定位功能,请手动打开!", Toast.LENGTH_LONG).show();*/
+            }
     }
 }
