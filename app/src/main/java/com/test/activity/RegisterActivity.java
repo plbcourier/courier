@@ -110,7 +110,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String namestr=name_edit.getText().toString();
                 String pwdstr=pwd_edit.getText().toString();
                 String captcha = captcha_edit.getText().toString();
-                if (namestr.length()>0 && pwdstr.length()>0 && pwdstr.length()>=6){
+                if (namestr.length()>0 && captcha.length()>0 && pwdstr.length()>=6){
                     phone = phone_edit.getText().toString();
                     SMSSDK.submitVerificationCode("+86",phone,captcha);
                 }
