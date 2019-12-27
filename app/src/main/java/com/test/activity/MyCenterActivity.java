@@ -34,13 +34,21 @@ import com.test.entity.Constant;
 import com.test.fragment.Fragment_my;
 import com.test.sqlite.UserinfoDBUtil;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -111,7 +119,7 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
             case R.id.line1:    //修改头像
                 final String[] gender = new String[]{"从相册中选择","拍照"};   //弹框弹出选项
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(MyCenterActivity.this);
-                builder1.setTitle("请选择您要修改头像的方式");   //弹框的标题
+                builder1.setTitle("修改头像");   //弹框的标题
                 builder1.setItems(gender, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {   //弹框里各选项添加点击事件
@@ -253,6 +261,7 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
             if (response.isSuccessful()){//响应成功
                 try {
                     jsonstr = response.body().string();//返回的json数据
+                    return jsonstr;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -285,5 +294,99 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
         TImage image = result.getImage();   //成功获取图片
         Bitmap bitmap = BitmapFactory.decodeFile(image.getOriginalPath());   //修改图片
         touxiang.setImageBitmap(bitmap);
+        File imageFile = getFile(bitmap);
+        UploadHeadImgTask uploadHeadImgTask = new UploadHeadImgTask();
+        uploadHeadImgTask.execute(imageFile);
     }
+
+    private class UploadHeadImgTask extends AsyncTask<File,Void,String>{//上传头像线程
+
+        @Override
+        protected String doInBackground(File... files) {
+            String userid = getUserid();
+            OkHttpClient client = new OkHttpClient();
+            MultipartBody.Builder multipartBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
+            if (files[0]!=null){
+                // MediaType.parse() 里面是上传的文件类型。
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),files[0]);
+                String filename = files[0].getName();
+                // 参数分别为， 请求key ，文件名称 ， RequestBody
+                multipartBody.addFormDataPart("icon",filename,requestBody)
+                        .addFormDataPart("id",userid);
+            }
+            final String[] jsonstr = {null};
+            Request request = new Request.Builder()
+                    .url(constant.PREFIX+constant.UPLOADICON)
+                    .post(multipartBody.build())
+                    .build();
+            client.newBuilder().readTimeout(10000, TimeUnit.MILLISECONDS)
+                    .build()
+                    .newCall(request)
+                    .enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MyCenterActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            //jsonstr[0] = response.body().string();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MyCenterActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String jsonstr) {
+            super.onPostExecute(jsonstr);
+            refreshData();
+        }
+    }
+
+    public File getFile(Bitmap bitmap) {//将图片转成file
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        File file = new File(Environment.getExternalStorageDirectory() + "/temp.jpg");
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            InputStream is = new ByteArrayInputStream(baos.toByteArray());
+            int x = 0;
+            byte[] b = new byte[1024 * 100];
+            while ((x = is.read(b)) != -1) {
+                fos.write(b, 0, x);
+            }
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    private String getUserid(){//获取当前登录用户id
+        UserinfoDBUtil userinfoDBUtil = new UserinfoDBUtil();//userinfo数据库工具类
+        SQLiteDatabase database = userinfoDBUtil.getSqLiteDatabase(MyCenterActivity.this);//获取userinfo数据库
+        //查询当前登录用户的userid
+        Cursor cursor = database.query("userinfo",null,null,null,null,null,null);
+        cursor.moveToFirst();
+        String userid = cursor.getString(1);
+        return userid;
+    }
+
 }

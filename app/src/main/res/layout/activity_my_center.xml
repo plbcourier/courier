@@ -84,10 +84,11 @@
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/username_text"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:layout_marginRight="5dp"/>
 
     </LinearLayout>
 
@@ -116,11 +117,12 @@
             android:layout_weight="1"/>
         <TextView
             android:id="@+id/birthday"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="16sp"
-            android:text="1999年08月08日"/>
+            android:text="1999年08月08日"
+            android:layout_marginRight="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
