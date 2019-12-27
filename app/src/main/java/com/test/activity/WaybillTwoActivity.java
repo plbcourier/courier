@@ -2,6 +2,8 @@ package com.test.activity;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -134,8 +136,25 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
                 startActivity(intent);
                 break;
             case R.id.pick_btn://确认取货
-                PickGoodsTask pickGoodsTask = new PickGoodsTask();
-                pickGoodsTask.execute(id);
+                AlertDialog.Builder builder = new AlertDialog.Builder(WaybillTwoActivity.this);
+                builder.setTitle("确认取货?");
+
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PickGoodsTask pickGoodsTask = new PickGoodsTask();
+                        pickGoodsTask.execute(id);
+                    }
+                });
+
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                builder.show();
                 break;
 
         }

@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:text="牛奶"
             android:textSize="18sp"
-            android:textColor="#5c5c5c"/>
+            android:textColor="#2b2b2b"/>
 
     </LinearLayout>
 
@@ -174,7 +174,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
@@ -208,7 +207,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"

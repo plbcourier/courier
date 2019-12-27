@@ -22,5 +22,7 @@ public class Constant {//网络接口常量
     public final String LOCATION = "location";//上传坐标
     public final String CHANGENAME = "changeName";//更改昵称
     public final String UPLOADCARD="uploadCard";//上传身份证
+    public final String COMMUTER = "commuter";//更改上下班状态
+    public final String GETCOUNT = "getCount";//查询单数
 
 }

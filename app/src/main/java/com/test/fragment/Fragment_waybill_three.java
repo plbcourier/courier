@@ -1,6 +1,8 @@
 package com.test.fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -300,10 +302,27 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
             delivery_btn.setOnClickListener(new View.OnClickListener() {//确认送达按钮
                 @Override
                 public void onClick(View v) {
-                    String id = songwaybills.get(position).getId();
-                    String orderId = songwaybills.get(position).getOrderId();//运单号
-                    DeliveryTask deliveryTask = new DeliveryTask();
-                    deliveryTask.execute(id,orderId);//传入参数
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("确认送达?");
+
+                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String id = songwaybills.get(position).getId();
+                            String orderId = songwaybills.get(position).getOrderId();//运单号
+                            DeliveryTask deliveryTask = new DeliveryTask();
+                            deliveryTask.execute(id,orderId);//传入参数
+                        }
+                    });
+
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    builder.show();
                 }
             });
 

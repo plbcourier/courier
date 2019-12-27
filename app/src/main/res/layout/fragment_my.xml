@@ -42,8 +42,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@mipmap/defaultheadicon"
-                app:riv_border_color="#333333"
-                app:riv_border_width="2dp"
+                app:riv_border_color="#e6e6e6"
+                app:riv_border_width="1px"
                 app:riv_oval="true" />
 
                 <TextView
@@ -107,6 +107,7 @@
                     android:textColor="#ffff"
                     />
                 <TextView
+                    android:id="@+id/count_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -124,11 +125,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="今天单数"
+                    android:text="今日单数"
                     android:textSize="20dp"
                     android:textColor="#ffff"
                     />
                 <TextView
+                    android:id="@+id/countday_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"

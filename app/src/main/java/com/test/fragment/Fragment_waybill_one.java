@@ -1,5 +1,10 @@
 package com.test.fragment;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -277,8 +283,25 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
             receive_btn.setOnClickListener(new View.OnClickListener() {//接单按钮点击事件
                 @Override
                 public void onClick(View v) {
-                    AddOrderTask addOrderTask = new AddOrderTask();//开启接单线程，传入运单号
-                    addOrderTask.execute(jiewaybills.get(position).getOrderid());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setTitle("确认接单?");
+
+                    builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            AddOrderTask addOrderTask = new AddOrderTask();//开启接单线程，传入运单号
+                            addOrderTask.execute(jiewaybills.get(position).getOrderid());
+                        }
+                    });
+
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    builder.show();
                 }
             });
 

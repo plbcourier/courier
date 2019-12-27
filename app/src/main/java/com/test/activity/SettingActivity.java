@@ -26,8 +26,6 @@ public class SettingActivity extends Activity implements View.OnClickListener {
     private void init() {
         back_img = findViewById(R.id.back_img);
         back_img.setOnClickListener(this);
-        bt_exit=findViewById(R.id.bt_exit);
-        bt_exit.setOnClickListener(this);
         pay_setting=findViewById(R.id.pay_setting);
         pay_setting.setOnClickListener(this);
         user_and_security=findViewById(R.id.user_and_security);
@@ -43,8 +41,6 @@ public class SettingActivity extends Activity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.back_img://返回图片按钮
                 finish();
-                break;
-            case R.id.bt_exit://退出账号
                 break;
             case R.id.user_and_security://安全中心
                 Intent intent2=new Intent(SettingActivity.this,SecurityCenterActivity.class);
