@@ -319,7 +319,7 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
                     .url(constant.PREFIX+constant.UPLOADICON)
                     .post(multipartBody.build())
                     .build();
-            client.newBuilder().readTimeout(10000, TimeUnit.MILLISECONDS)
+            client.newBuilder().readTimeout(3000, TimeUnit.MILLISECONDS)
                     .build()
                     .newCall(request)
                     .enqueue(new Callback() {
@@ -335,17 +335,16 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            //jsonstr[0] = response.body().string();
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(MyCenterActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyCenterActivity.this, "上传中，请稍后查看", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
                     });
             try {
-                Thread.sleep(5000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

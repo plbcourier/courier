@@ -14,6 +14,8 @@ MobSDK {
 }
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.test.courier"
@@ -27,6 +29,8 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
         }
     }
     sourceSets {
