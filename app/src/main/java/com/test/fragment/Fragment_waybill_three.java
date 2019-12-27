@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -106,6 +107,7 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
         listView.setAdapter(myadapter);
         listView.setOnItemClickListener(this);
         refresh_layout = view.findViewById(R.id.refresh_layout);
+        refresh_layout.setColorSchemeColors(Color.RED);
         refresh_layout.setOnRefreshListener(this);//刷新监听
     }
 

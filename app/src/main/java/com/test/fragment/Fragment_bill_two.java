@@ -2,6 +2,7 @@ package com.test.fragment;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -159,6 +160,7 @@ public class Fragment_bill_two extends Fragment implements SwipeRefreshLayout.On
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);
         refresh_layout = view.findViewById(R.id.refresh_layout);
+        refresh_layout.setColorSchemeColors(Color.RED);
         refresh_layout.setOnRefreshListener(this);//刷新监听
     }
 

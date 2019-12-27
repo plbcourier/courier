@@ -230,6 +230,7 @@ public class Fragment_waybill_one extends Fragment implements SwipeRefreshLayout
         listView.setOnItemClickListener(this);
         refresh_layout = view.findViewById(R.id.refresh_layout);
         refresh_layout.setOnRefreshListener(this);//下拉刷新监听
+        refresh_layout.setColorSchemeColors(Color.RED);
         constant = new Constant();//实例化常量类
         coords = new Coords();
         coordsUtil = new CoordsUtil();

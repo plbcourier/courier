@@ -161,6 +161,7 @@ public class Fragment_bill_one extends Fragment  implements SwipeRefreshLayout.O
         myadapter = new Myadapter();
         listView.setAdapter(myadapter);
         refresh_layout = view.findViewById(R.id.refresh_layout);
+        refresh_layout.setColorSchemeColors(Color.RED);
         refresh_layout.setOnRefreshListener(this);//刷新监听
     }
 
