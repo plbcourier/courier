@@ -76,7 +76,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="运单号："
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textColor="#2b2b2b"/>
 
                             <TextView
@@ -84,7 +84,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="123456"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textColor="#2b2b2b"/>
                         </LinearLayout>
 
@@ -97,7 +97,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="配送费 ¥ "
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textColor="#ff0000"/>
 
                             <TextView
@@ -105,7 +105,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="12.0"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textColor="#ff0000"/>
                         </LinearLayout>
 
@@ -126,7 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="运单时间："
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"
                         android:layout_marginLeft="5dp"/>
 
@@ -135,7 +135,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2019"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -157,7 +157,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="--"
                         android:maxLength="7"
                         android:textColor="#2b2b2b"/>
@@ -166,7 +166,7 @@
                         android:id="@+id/distance_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="10"
                         android:maxLength="4"
                         android:textColor="#2b2b2b"/>
@@ -174,7 +174,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="km--"
                         android:maxLength="7"
                         android:textColor="#2b2b2b"/>
@@ -187,7 +187,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="--"
                         android:maxLength="7"
                         android:textColor="#2b2b2b"/>
@@ -196,7 +196,7 @@
                         android:id="@+id/distanceend_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="9.71"
                         android:maxLength="4"
                         android:textColor="#2b2b2b"/>
@@ -204,7 +204,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:text="km--"
                         android:maxLength="7"
                         android:textColor="#2b2b2b"/>
@@ -235,7 +235,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="货物保险费 ¥ "
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"
                         android:layout_marginLeft="10dp"/>
 
@@ -244,7 +244,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0.00"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -269,7 +269,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="运单总金额 ¥ "
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"
                         android:layout_marginLeft="10dp"/>
 
@@ -278,7 +278,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0.00"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -304,7 +304,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="物品："
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#23a49b"
                         android:layout_marginLeft="5dp"/>
 
@@ -313,7 +313,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="牛奶"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -332,7 +332,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="物品数量："
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#23a49b"
                         android:layout_marginLeft="5dp"/>
 
@@ -341,7 +341,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XX"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2b2b2b"/>
 
                 </LinearLayout>
@@ -377,7 +377,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="取货点"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2d2d2d"
                         android:layout_marginLeft="10dp"/>
 
@@ -386,7 +386,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XX市场"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2d2d2d"
                         android:layout_marginLeft="10dp"/>
 
@@ -410,7 +410,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="送货点"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2d2d2d"
                         android:layout_marginLeft="10dp"/>
 
@@ -419,7 +419,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="衡山科学城"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="#2d2d2d"
                         android:layout_marginLeft="10dp"/>
 
