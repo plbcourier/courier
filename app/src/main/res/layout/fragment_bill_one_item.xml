@@ -3,7 +3,8 @@
               android:layout_height="wrap_content"
               android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/fragment_waybill_item_bg">
+    android:background="@drawable/fragment_waybill_item_bg"
+    android:padding="4dp">
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -18,7 +19,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textColor="#000000"
                 android:text="账单号："
                 android:layout_weight="0"
@@ -27,7 +28,7 @@
                 android:id="@+id/billid_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:textColor="#000000"
                 android:text="123456"
                 android:layout_weight="0"
@@ -40,7 +41,7 @@
                 android:id="@+id/billmoney_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:textColor="#008B02"
                 android:text="+0.00"
                 android:layout_weight="0"
@@ -50,7 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -58,7 +59,7 @@
                 android:id="@+id/time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:text="2019-12-17 19:47"
                 android:layout_weight="0"
                 />
@@ -69,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:text="余额：¥ "
                 android:layout_weight="0"
                 />
@@ -77,16 +78,10 @@
                 android:id="@+id/balance_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="14dp"
                 android:text="0.00"
                 />
         </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DBDBDB"
-            />
     </LinearLayout>
 
 </LinearLayout>
