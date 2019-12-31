@@ -7,29 +7,6 @@
     tools:context="com.test.activity.VerifyActivity"
     android:orientation="vertical"
     >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/text_blue"
-        android:gravity="center_vertical"
-        android:padding="5dp">
-
-        <ImageView
-            android:id="@+id/back_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/back"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="实名认证"
-            android:textSize="18sp"
-            android:textColor="#ffffff"
-            />
-    </LinearLayout>
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +14,7 @@
         android:textSize="20dp"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:textColor="#2b2b2b"
+        android:textColor="#bfbfbf"
         />
 
     <RelativeLayout
@@ -50,17 +27,15 @@
             android:layout_centerVertical="true"
             android:textSize="25dp"
             android:textColor="#bfbfbf"
-            android:text="身份证国徽面"
+            android:text="身份证正面"
             />
         <ImageView
             android:id="@+id/view"
             android:layout_marginTop="10dp"
             android:layout_width="300dp"
-            android:layout_height="190dp"
+            android:layout_height="150dp"
             android:background="@drawable/bg_shenfenzheng"
             android:layout_centerHorizontal="true"
-            android:scaleType="fitXY"
-            android:padding="5dp"
             />
     </RelativeLayout>
     <RelativeLayout
@@ -73,23 +48,21 @@
             android:layout_centerVertical="true"
             android:textSize="25dp"
             android:textColor="#bfbfbf"
-            android:text="身份证人像面"
+            android:text="身份证反面"
             />
         <ImageView
             android:id="@+id/view1"
             android:layout_marginTop="10dp"
             android:layout_width="300dp"
-            android:layout_height="190dp"
+            android:layout_height="150dp"
             android:background="@drawable/bg_shenfenzheng"
             android:layout_centerHorizontal="true"
-            android:scaleType="fitXY"
-            android:padding="5dp"
             />
     </RelativeLayout>
     <Button
         android:id="@+id/button"
-        android:layout_marginTop="15dp"
-        android:layout_width="300dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/bg_message"

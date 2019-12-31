@@ -293,6 +293,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
                             // 如果没有授予该权限，就去提示用户请求
                             Intent intent=new Intent(getActivity(), NaviActivity.class);
                             startActivity(intent);
+
                         }
                     }
 

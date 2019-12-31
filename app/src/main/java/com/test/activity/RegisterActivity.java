@@ -142,7 +142,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void run() {
                         if (name1.equals("success")){
-                            Toast.makeText(RegisterActivity.this,"注册成功\n实名认证后可接单",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(RegisterActivity.this,"注册失败",Toast.LENGTH_SHORT).show();
                         }
