@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.service.JCommonService;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -169,6 +171,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         RequestBody requestBody = new FormBody.Builder()//传入请求参数，手机号、密码
                 .add("phone",phone)
                 .add("password",password)
+                .add("registrationID",JPushInterface.getRegistrationID(LoginActivity.this))
                 .build();
         Request request = new Request.Builder()//请求对象
                 .url(constant.PREFIX+constant.LOGIN)
