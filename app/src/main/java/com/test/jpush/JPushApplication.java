@@ -1,6 +1,7 @@
 package com.test.jpush;
 
 import android.app.Application;
+import android.util.Log;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -14,5 +15,7 @@ public class JPushApplication extends Application {
         super.onCreate();
         JPushInterface.setDebugMode(true);
         JPushInterface.init(getApplicationContext());
+        String registrationId = JPushInterface.getRegistrationID(getApplicationContext());
+        Log.e("tag",registrationId);
     }
 }
