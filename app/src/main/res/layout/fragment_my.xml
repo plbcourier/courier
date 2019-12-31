@@ -210,6 +210,7 @@
                     android:src="@mipmap/zhongxin"
                     />
                 <TextView
+                    android:id="@+id/zhongxin_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="个人中心"
@@ -229,6 +230,7 @@
                     android:layout_height="wrap_content"
                     android:src="@mipmap/fankui" />
                 <TextView
+                    android:id="@+id/xiaoxi_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的消息"
@@ -257,6 +259,7 @@
                     android:src="@mipmap/zichan"
                     />
                 <TextView
+                    android:id="@+id/zichan_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的资产"
@@ -276,6 +279,7 @@
                     android:src="@mipmap/tongzhi"
                     />
                 <TextView
+                    android:id="@+id/tongzhi_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="系统通知"
@@ -303,6 +307,7 @@
                 android:src="@mipmap/xiaoxi"
                 />
             <TextView
+                android:id="@+id/fankui_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="建议反馈"
@@ -322,9 +327,10 @@
                     android:src="@mipmap/yanzheng"
                     />
                 <TextView
+                    android:id="@+id/yanzheng_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="身份证验证"
+                    android:text="实名验证"
                     />
             </LinearLayout>
         </LinearLayout>
@@ -350,6 +356,7 @@
                     android:src="@mipmap/shezhi"
                     />
                 <TextView
+                    android:id="@+id/shezhi_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="设置"
@@ -369,6 +376,7 @@
                     android:src="@mipmap/tuichu"
                     />
                 <TextView
+                    android:id="@+id/tuichu_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="退出登录"
