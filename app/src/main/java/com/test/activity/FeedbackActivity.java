@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.test.courier.R;
 public class FeedbackActivity extends AppCompatActivity {
     ImageView backtrack;
     Button submit;
+    private EditText opinion_edit;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class FeedbackActivity extends AppCompatActivity {
         submit = findViewById(R.id.submit);//获取提交按钮的控件
         ActionBar actionBar = getSupportActionBar();//获取标题栏
         actionBar.hide();//隐藏AppCompatActivity的标题栏
+        opinion_edit = findViewById(R.id.opinion_edit);
         //为返回按钮做点击事件
         backtrack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +40,9 @@ public class FeedbackActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               showNormalDialog();
+                if (opinion_edit.getText().toString().length()>0){
+                    showNormalDialog();
+                }
             }
         });
     }
@@ -54,13 +59,6 @@ public class FeedbackActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
-                    }
-                });
-        normalDialog.setNegativeButton("关闭",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
                     }
                 });
         // 显示
