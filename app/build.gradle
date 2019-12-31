@@ -23,6 +23,7 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -87,6 +88,7 @@ dependencies {
     compile 'cn.jiguang.sdk:jpush:3.5.4'
     /*此处以JCore 2.2.4 版本为例。*/
     compile 'cn.jiguang.sdk:jcore:2.2.4'
+    compile 'com.android.support:multidex:1.0.1'
 }
 
 
