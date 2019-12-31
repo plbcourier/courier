@@ -298,9 +298,9 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
         UploadHeadImgTask uploadHeadImgTask = new UploadHeadImgTask();
         uploadHeadImgTask.execute(imageFile);
     }
-
+    //AsyncTask中参数第一个File是开始调用返回值，Void则是中途返回值，String则是完成后返回值
     private class UploadHeadImgTask extends AsyncTask<File,Void,String>{//上传头像线程
-
+       // doInBackground（）该方法运行在后台线程中。这里将主要负责执行那些很耗时的后台计算工作。可以调用 publishProgress方法来更新实时的任务进度。该方法是抽象方法，子类必须实现。
         @Override
         protected String doInBackground(File... files) {
             String userid = getUserid();
@@ -309,6 +309,7 @@ public class MyCenterActivity extends TakePhotoActivity implements View.OnClickL
             if (files[0]!=null){
                 // MediaType.parse() 里面是上传的文件类型。
                 RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),files[0]);
+                //获取文件名称
                 String filename = files[0].getName();
                 // 参数分别为， 请求key ，文件名称 ， RequestBody
                 multipartBody.addFormDataPart("icon",filename,requestBody)
