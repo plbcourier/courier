@@ -25,6 +25,7 @@ public class Constant {//网络接口常量
     public final String COMMUTER = "commuter";//更改上下班状态
     public final String GETCOUNT = "getCount";//查询单数
     public final String UPLOADICON = "uploadIcon";//上传头像
+    public final String CARDSTATUS = "cardStatus";//检查实名认证状态
 
 
 }

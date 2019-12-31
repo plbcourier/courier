@@ -94,6 +94,60 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
         view.setOnClickListener(this);
         view1.setOnClickListener(this);
         button.setOnClickListener(this);//上传按钮点击事件
+
+        checkStatus();//检查认证状态
+    }
+
+    private void checkStatus() {//检查认证状态
+        CheckStatusTask checkStatusTask = new CheckStatusTask();
+        checkStatusTask.execute();
+    }
+
+    private class CheckStatusTask extends AsyncTask<Void,Void,String>{//检查认证状态线程
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new FormBody.Builder()
+                    .add("deliveryId",getUserid())
+                    .build();
+            Request request = new Request.Builder()
+                    .url(constant.PREFIX+constant.CARDSTATUS)
+                    .method("POST",requestBody)
+                    .build();
+            Response response = null;
+            String jsonstr = null;
+            try {
+                response = client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (response.isSuccessful()){
+                try {
+                    jsonstr = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return jsonstr;
+        }
+
+        @Override
+        protected void onPostExecute(String jsonstr) {
+            super.onPostExecute(jsonstr);
+            //0未审核1审核中2审核通过3审核不通过
+            if ("0".equals(jsonstr)){
+                Toast.makeText(VerifyActivity.this, "您还未实名认证", Toast.LENGTH_SHORT).show();
+            }else if ("1".equals(jsonstr)){
+                Toast.makeText(VerifyActivity.this, "您的认证信息审核中", Toast.LENGTH_SHORT).show();
+            }else if ("2".equals(jsonstr)){
+                Toast.makeText(VerifyActivity.this, "您的认证信息已通过", Toast.LENGTH_SHORT).show();
+            }else if ("3".equals(jsonstr)){
+                Toast.makeText(VerifyActivity.this, "您的认证信息未通过", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(VerifyActivity.this, "认证信息查询失败", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
@@ -399,7 +453,5 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
             return null;
         }
     }
-
-
 
 }

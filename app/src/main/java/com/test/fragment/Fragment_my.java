@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +71,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
     private Constant constant;//常量类
     private TextView count_text;//总单数
     private TextView countday_text;//今日单数
+    private LinearLayout money_line;
 
     private TextView zhongxin_text;
     private TextView xiaoxi_text;
@@ -160,6 +162,9 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
         tuichu_text = view.findViewById(R.id.tuichu_text);
         tuichu_text.setOnClickListener(this);
 
+        money_line = view.findViewById(R.id.money_line);
+        money_line.setOnClickListener(this);
+
 
         fankui.setOnClickListener(this);
         xiaoxi.setOnClickListener(this);
@@ -239,6 +244,7 @@ public class Fragment_my extends Fragment implements View.OnClickListener{
                 //我的资产
             case R.id.zichan:
             case R.id.zichan_text:
+            case R.id.money_line:
                 userid = getUserid();//获取当前用户userid
                 if (userid.equals("0")){//无用户登录时，跳转登录
                     intent = new Intent(getActivity(),LoginActivity.class);
