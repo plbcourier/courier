@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+//-----------实名认证-----------
 public class VerifyActivity extends AppCompatActivity implements View.OnClickListener{
     private Constant constant;
     private ImageView view;//身份证正面
@@ -65,6 +67,7 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
     public static final int LOCAL_CROP=13;//本地图库
     private File takePhotoImage;//图片存放地址
     private int select;
+    private ImageView back_img;
 
     private Bitmap zhengmian;//身份证正面
     private Bitmap fanmian;//身份证反面
@@ -73,6 +76,8 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         //取消严格模式  FileProvider
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -82,6 +87,8 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
         view1=findViewById(R.id.view1);//反面
         button=findViewById(R.id.button);//上传
         constant = new Constant();
+        back_img = findViewById(R.id.back_img);
+        back_img.setOnClickListener(this);
 
 
         view.setOnClickListener(this);
@@ -92,23 +99,52 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.back_img:
+                finish();
+                break;
             case R.id.view:
                 /*Environment.getExternalStorageDirectory()特殊的文件，应用删除，该文件也不会删除*/
                 takePhotoImage=new File(Environment.getExternalStorageDirectory(),"take_photo_image.jpg");
                 select=0;
                 takePhotoOrSelecctPicture();
+
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    final String cameraPermission = Manifest.permission.CAMERA;//相机权限
+                    final String readStoragePermission = Manifest.permission.READ_EXTERNAL_STORAGE;//读取外部存储权限
+                    final String writeStoragePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE;//写入外部存储权限
+
+                    //检查权限，没有则申请授权
+                    if (ContextCompat.checkSelfPermission(VerifyActivity.this,cameraPermission)!=PackageManager.PERMISSION_GRANTED
+                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,writeStoragePermission)!=PackageManager.PERMISSION_GRANTED
+                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,readStoragePermission)!=PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(VerifyActivity.this,
+                                new String[]{cameraPermission,writeStoragePermission,readStoragePermission},300);
+                    }
+                }
+
                 break;
             case R.id.view1:
                 /*Environment.getExternalStorageDirectory()特殊的文件，应用删除，该文件也不会删除*/
                 takePhotoImage=new File(Environment.getExternalStorageDirectory(),"take_photo_image1.jpg");
                 select=1;
                 takePhotoOrSelecctPicture();
+
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                    final String cameraPermission = Manifest.permission.CAMERA;//相机权限
+                    final String readStoragePermission = Manifest.permission.READ_EXTERNAL_STORAGE;//读取外部存储权限
+                    final String writeStoragePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE;//写入外部存储权限
+
+                    //检查权限，没有则申请授权
+                    if (ContextCompat.checkSelfPermission(VerifyActivity.this,cameraPermission)!=PackageManager.PERMISSION_GRANTED
+                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,writeStoragePermission)!=PackageManager.PERMISSION_GRANTED
+                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,readStoragePermission)!=PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(VerifyActivity.this,
+                                new String[]{cameraPermission,writeStoragePermission,readStoragePermission},300);
+                    }
+                }
+
                 break;
             case R.id.button:
-                /*
-mImageView.setDrawingCacheEnabled(true);
-Bitmap bitmap = Bitmap.createBitmap(mImageView.getDrawingCache());
-mImageView.setDrawingCacheEnabled(false);*/
                 view.setDrawingCacheEnabled(true);
                 zhengmian=((BitmapDrawable)view.getDrawable()).getBitmap();//获取身份证正面图片
                 view.setDrawingCacheEnabled(false);
@@ -136,25 +172,43 @@ mImageView.setDrawingCacheEnabled(false);*/
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case 0:
-                                try {
-                                    //文件存在，删除文件
-                                    if (takePhotoImage.exists()){
-                                        takePhotoImage.delete();
-                                    }
-                                    //根据路径名自动创建一个新的空文件
-                                    takePhotoImage.createNewFile();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                //获取图片文件的uri对象
-                                imageUri =Uri.fromFile(takePhotoImage);
+                                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+                                    final String cameraPermission = Manifest.permission.CAMERA;//相机权限
+                                    final String readStoragePermission = Manifest.permission.READ_EXTERNAL_STORAGE;//读取外部存储权限
+                                    final String writeStoragePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE;//写入外部存储权限
 
-                                //创建一个Intent用于启动手机的照相拍照功能
-                                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                //指定输出到文件uri中
-                                intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                                //启动intent开始拍照
-                                startActivityForResult(intent,TAKE_PHOTO);
+                                    //检查权限，没有则申请授权
+                                    if (ContextCompat.checkSelfPermission(VerifyActivity.this,cameraPermission)!=PackageManager.PERMISSION_GRANTED
+                                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,writeStoragePermission)!=PackageManager.PERMISSION_GRANTED
+                                            ||ContextCompat.checkSelfPermission(VerifyActivity.this,readStoragePermission)!=PackageManager.PERMISSION_GRANTED){
+                                        ActivityCompat.requestPermissions(VerifyActivity.this,
+                                                new String[]{cameraPermission,writeStoragePermission,readStoragePermission},300);
+                                    }
+
+                                    if (ContextCompat.checkSelfPermission(VerifyActivity.this,cameraPermission)==PackageManager.PERMISSION_GRANTED
+                                            &&ContextCompat.checkSelfPermission(VerifyActivity.this,readStoragePermission)==PackageManager.PERMISSION_GRANTED
+                                            &&ContextCompat.checkSelfPermission(VerifyActivity.this,writeStoragePermission)==PackageManager.PERMISSION_GRANTED){
+                                        try {
+                                            //文件存在，删除文件
+                                            if (takePhotoImage.exists()){
+                                                takePhotoImage.delete();
+                                            }
+                                            //根据路径名自动创建一个新的空文件
+                                            takePhotoImage.createNewFile();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        //获取图片文件的uri对象
+                                        imageUri =Uri.fromFile(takePhotoImage);
+
+                                        //创建一个Intent用于启动手机的照相拍照功能
+                                        Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        //指定输出到文件uri中
+                                        intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+                                        //启动intent开始拍照
+                                        startActivityForResult(intent,TAKE_PHOTO);
+                                    }
+                                }
                                 break;
                             case 1:
                                 /*创建intent用于打开手机本地图库选择图片*/
