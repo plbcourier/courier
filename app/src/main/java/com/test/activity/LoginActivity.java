@@ -122,7 +122,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String jsonstr) {//获取到网络操作结果，解析json
             super.onPostExecute(jsonstr);
-            Toast.makeText(LoginActivity.this, jsonstr+"", Toast.LENGTH_SHORT).show();
             if (jsonstr!=null && !"".equals(jsonstr)){//登录成功
                 try {
                     jsonExtract(jsonstr);//解析json
