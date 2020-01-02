@@ -2,6 +2,8 @@ package com.test.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -97,11 +99,19 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         initPoutePlan();
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
+        mHandler.postDelayed(mRunnable,1000);
         /*end_edt_city.setText("衡阳市");*/
 /*        start_edt_address.setText("湖南省衡阳市珠晖区衡阳火车站");*/
 /*        end_edt_address.setText(*//*bundle.getString("address")*//*"三泰市场");*/
-        btnDrive.performClick();
     }
+    //延迟1秒定位和规划路线
+    private Runnable mRunnable=new Runnable() {
+        @Override
+        public void run() {
+            mHandler.sendEmptyMessage(1);
+        }
+    };
+
     private void initMyLocation() {
         //缩放地图
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
@@ -380,4 +390,12 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
          /*       Toast.makeText(this, " 手机GPS已关闭,不能进行定位功能,请手动打开!", Toast.LENGTH_LONG).show();*/
             }
     }
+    Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mLocationClient.start();
+            btnDrive.performClick();
+        }
+    };
 }
