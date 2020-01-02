@@ -126,7 +126,12 @@ public class WaybillTwoActivity extends Activity implements View.OnClickListener
                 finish();
                 break;
             case R.id.navi_btn://导航按钮
+                Bundle bundle = new Bundle();
+                bundle.putString("type","qu");
+                bundle.putString("marketName",marketName);
+                bundle.putString("address",address);
                 Intent intent2=new Intent(WaybillTwoActivity.this, NaviActivity.class);
+                intent2.putExtras(bundle);
                 startActivity(intent2);
                 break;
             case R.id.phone_btn://拨打电话

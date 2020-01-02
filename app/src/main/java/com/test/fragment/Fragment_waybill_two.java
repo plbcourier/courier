@@ -282,6 +282,7 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
                     String longitude = quwaybills.get(position).getLongitude();//经度
                     String latitude = quwaybills.get(position).getLatitude();//纬度
                     String marketName = quwaybills.get(position).getMarketName();//取货点
+                    String address = quwaybills.get(position).getAddress();//送货点
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         //定位权限
                         String[] locationPermission = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -290,8 +291,12 @@ public class Fragment_waybill_two extends Fragment implements SwipeRefreshLayout
                             ActivityCompat.requestPermissions(getActivity(), locationPermission, 300);
                         }
                         if (ContextCompat.checkSelfPermission(getActivity(),locationPermission[0])== PackageManager.PERMISSION_GRANTED) {
-                            // 如果没有授予该权限，就去提示用户请求
+                            Bundle bundle = new Bundle();
+                            bundle.putString("type","qu");
+                            bundle.putString("marketName",marketName);
+                            bundle.putString("address",address);
                             Intent intent=new Intent(getActivity(), NaviActivity.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }

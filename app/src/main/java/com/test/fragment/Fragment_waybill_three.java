@@ -274,6 +274,7 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
                     String address = songwaybills.get(position).getAddress();//送货地址
                     String longitude = songwaybills.get(position).getLongitude();//经度
                     String latitude = songwaybills.get(position).getLatitude();//纬度
+                    String marketName = songwaybills.get(position).getMarketName();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         //定位权限
                         String[] locationPermission = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -282,8 +283,12 @@ public class Fragment_waybill_three extends Fragment implements SwipeRefreshLayo
                             ActivityCompat.requestPermissions(getActivity(), locationPermission, 300);
                         }
                         if (ContextCompat.checkSelfPermission(getActivity(),locationPermission[0])== PackageManager.PERMISSION_GRANTED) {
-                            // 如果没有授予该权限，就去提示用户请求
+                            Bundle bundle = new Bundle();
+                            bundle.putString("type","song");
+                            bundle.putString("marketName",marketName);
+                            bundle.putString("address",address);
                             Intent intent=new Intent(getActivity(), NaviActivity.class);
+                            intent.putExtras(bundle);
                             startActivity(intent);
                         }
                     }

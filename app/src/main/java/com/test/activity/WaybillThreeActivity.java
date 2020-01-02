@@ -117,7 +117,12 @@ public class WaybillThreeActivity extends Activity implements View.OnClickListen
                 finish();
                 break;
             case R.id.navi_btn://导航按钮
+                Bundle bundle = new Bundle();
+                bundle.putString("type","song");
+                bundle.putString("marketName",marketName);
+                bundle.putString("address",address);
                 Intent intent2=new Intent(WaybillThreeActivity.this, NaviActivity.class);
+                intent2.putExtras(bundle);
                 startActivity(intent2);
                 break;
             case R.id.phone_btn://拨号按钮
