@@ -119,10 +119,10 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         option.setOpenGps(true); // 打开gps
         //设置需要地址信息
         option.setIsNeedAddress(true);
-        //设置locationClientOption
+        //5秒更新一次我的定位
+        option.setScanSpan(3000);
         //设置需要位置描述信息
         option.setIsNeedLocationDescribe(true);
-        //
         option.setIsNeedLocationPoiList(true);
         mLocationClient.setLocOption(option);
         mLocationClient.registerLocationListener(mBdLocationListener);
@@ -281,7 +281,6 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                 end_edt_address.setText(address_nav+"");
             }
             end_edt_city.setText(location.getCity());
-            btnDrive.performClick();
             //设置起点
             mLastLocationData = new LatLng(mLatitude, mLongtitude);
             if (isFirstin) {
