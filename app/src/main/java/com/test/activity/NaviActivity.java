@@ -176,7 +176,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onGetDrivingRouteResult(DrivingRouteResult result) {
             if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-                Toast.makeText(NaviActivity.this, "路线规划:未找到结果,检查输入路线是否正确和GPS状态!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NaviActivity.this, "路线规划:未找到结果\nGPS是否打开!\n地址是否正确!", Toast.LENGTH_SHORT).show();
                 //禁止定位
                 isFirstin = false;
             }
@@ -227,14 +227,15 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.btn_drive:
                 // 设置起、终点信息 动态输入规划路线
-                PlanNode stNode = PlanNode.withCityNameAndPlaceName(startCity,startAddress);
-                PlanNode enNode = PlanNode.withCityNameAndPlaceName(endCity,endAddress);
+                LatLng startPoint = new LatLng(mLatitude, mLongtitude);//当前坐标(经纬度)
+                /*PlanNode stNode = PlanNode.withCityNameAndPlaceName(startCity,startAddress);*/
+                PlanNode enNode = PlanNode.withCityNameAndPlaceName(String.valueOf(endCity),String.valueOf(endAddress));//字符串
               /*  //经纬度规划路线
                 LatLng startPoint = new LatLng(mLatitude, mLongtitude);//当前坐标
                 LatLng endPoint = new LatLng(28.213478, 112.979353);//长沙
                 PlanNode stNode = PlanNode.withLocation(startPoint);
                 PlanNode enNode = PlanNode.withLocation(endPoint);*/
-                mSearch.drivingSearch((new DrivingRoutePlanOption()).from(stNode).to(enNode));
+                mSearch.drivingSearch((new DrivingRoutePlanOption()).from(PlanNode.withLocation(startPoint)).to(enNode));
                 break;
             case R.id.back_img_nav:
                 finish();
@@ -271,6 +272,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
             mBaiduMap.setMyLocationConfiguration(config);
             //更新经纬度
             mLatitude = location.getLatitude();
+            mLongtitude = location.getLongitude();
             start_edt_city.setText(location.getCity());
             start_edt_address.setText(location.getAddrStr());
             if (type_nav.equals("qu")){
@@ -279,7 +281,6 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                 end_edt_address.setText(address_nav+"");
             }
             end_edt_city.setText(location.getCity());
-            mLongtitude = location.getLongitude();
             btnDrive.performClick();
             //设置起点
             mLastLocationData = new LatLng(mLatitude, mLongtitude);
