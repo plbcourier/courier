@@ -101,10 +101,23 @@
         android:textColor="#fff"
         android:textStyle="bold"
         />
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/baiduMapView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true" />
+        android:layout_height="match_parent">
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/baiduMapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true" />
 
+        <ImageView
+            android:id="@+id/dingwei_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="60dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/dingwei" />
+    </RelativeLayout>
 </LinearLayout>

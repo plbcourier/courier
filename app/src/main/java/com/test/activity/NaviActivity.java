@@ -1,6 +1,7 @@
 package com.test.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -73,6 +74,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     private EditText start_edt_city,start_edt_address,end_edt_city,end_edt_address;
 
     private GPS_Presenter gps_presenter ;
+    private ImageView dingwei_img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,14 +85,16 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.baiduMapView);
         mBaiduMap = mMapView.getMap();
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
         initView();
         initMyLocation();
         initPoutePlan();
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
-        end_edt_city.setText("衡阳市");
-        start_edt_address.setText("夕阳红公寓");
-        end_edt_address.setText("五一市场");
+        /*end_edt_city.setText("衡阳市");*/
+        start_edt_address.setText("湖南省衡阳市珠晖区衡阳火车站");
+        end_edt_address.setText(/*bundle.getString("address")*/"三泰市场");
         btnDrive.performClick();
     }
     private void initMyLocation() {
@@ -181,6 +185,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                 mBaiduMap.clear();
                 Toast.makeText(NaviActivity.this, "路线规划:搜索完成", Toast.LENGTH_LONG).show();
                 DrivingRouteOverlay overlay = new DrivingRouteOverlay(mBaiduMap);
+
                 overlay.setData(result.getRouteLines().get(0));
                 overlay.addToMap();
                 overlay.zoomToSpan();
@@ -197,7 +202,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     };
     private void initView() {
         btnDrive = (Button)findViewById(R.id.btn_drive);
-
+        dingwei_img=findViewById(R.id.dingwei_img);
         start_edt_city = (EditText)findViewById(R.id.Start_Edt_City);
         start_edt_address = (EditText)findViewById(R.id.Start_Edt_Address);
         end_edt_city = (EditText)findViewById(R.id.End_Edt_City);
@@ -205,6 +210,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         back_img=findViewById(R.id.back_img_nav);
         back_img.setOnClickListener(this);
         btnDrive.setOnClickListener(this);
+        dingwei_img.setOnClickListener(this);
     }
 
     @Override
@@ -230,6 +236,12 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                 break;
                 default:
                     break;
+            case R.id.dingwei_img:
+                mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(18));
+                //自己当前的位置
+                MapStatusUpdate mu=MapStatusUpdateFactory.newLatLng(mLastLocationData);
+                mBaiduMap.animateMapStatus(mu);
+                break;
         }
     }
     //定位
@@ -255,6 +267,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
             //更新经纬度
             mLatitude = location.getLatitude();
             start_edt_city.setText(location.getCity());
+            end_edt_city.setText(location.getCity());
             mLongtitude = location.getLongitude();
             btnDrive.performClick();
             //设置起点
