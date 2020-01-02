@@ -66,7 +66,9 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     private LatLng mLastLocationData;
     private MyLocationConfiguration.LocationMode mCurrentMode;//定义当前定位模式
     private boolean isFirstin = true;
-
+    private String type_nav;//类型
+    private String marketName_nai;//取货点
+    private String address_nav;//收货点
     // 路线规划相关
     private RoutePlanSearch mSearch = null;
 
@@ -87,14 +89,17 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         mBaiduMap = mMapView.getMap();
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
+        type_nav=bundle.getString("type");
+        marketName_nai=bundle.getString("marketName");
+        address_nav=bundle.getString("address");
         initView();
         initMyLocation();
         initPoutePlan();
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
         /*end_edt_city.setText("衡阳市");*/
-        start_edt_address.setText("湖南省衡阳市珠晖区衡阳火车站");
-        end_edt_address.setText(/*bundle.getString("address")*/"三泰市场");
+/*        start_edt_address.setText("湖南省衡阳市珠晖区衡阳火车站");*/
+/*        end_edt_address.setText(*//*bundle.getString("address")*//*"三泰市场");*/
         btnDrive.performClick();
     }
     private void initMyLocation() {
@@ -267,6 +272,12 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
             //更新经纬度
             mLatitude = location.getLatitude();
             start_edt_city.setText(location.getCity());
+            start_edt_address.setText(location.getAddrStr());
+            if (type_nav.equals("qu")){
+                end_edt_address.setText(marketName_nai+"");
+            }else{
+                end_edt_address.setText(address_nav+"");
+            }
             end_edt_city.setText(location.getCity());
             mLongtitude = location.getLongitude();
             btnDrive.performClick();
