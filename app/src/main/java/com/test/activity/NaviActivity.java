@@ -1,4 +1,4 @@
-package com.test.activity;
+﻿package com.test.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -84,7 +84,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_navi);
-        gps_presenter = new GPS_Presenter( this , this ) ;
+        gps_presenter = new GPS_Presenter( this,this) ;
         this.context = this;
         //获取地图控件引用
         mMapView = (MapView) findViewById(R.id.baiduMapView);
@@ -140,7 +140,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         //注册监听函数
         mLocationClient.registerLocationListener(myListener);
         //初始化图标
-/*        mIconLocation = BitmapDescriptorFactory.fromResource(R.drawable.navi_map_gps);*/
+       /*mIconLocation = BitmapDescriptorFactory.fromResource(R.drawable.navi_map_gps);*/
         mCurrentMode =MyLocationConfiguration.LocationMode.NORMAL;//设置定位模式
         //设置构造方式,将定位模式,定义图标添加其中
         MyLocationConfiguration config=new MyLocationConfiguration(mCurrentMode,true,mIconLocation);
