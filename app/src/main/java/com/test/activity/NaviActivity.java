@@ -99,7 +99,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
         initPoutePlan();
         ActionBar actionBar=getSupportActionBar();
         actionBar.hide();
-        mHandler.postDelayed(mRunnable,1000);
+        mHandler.postDelayed(mRunnable,500);
         /*end_edt_city.setText("衡阳市");*/
 /*        start_edt_address.setText("湖南省衡阳市珠晖区衡阳火车站");*/
 /*        end_edt_address.setText(*//*bundle.getString("address")*//*"三泰市场");*/

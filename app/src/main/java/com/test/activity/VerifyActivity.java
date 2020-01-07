@@ -320,7 +320,7 @@ public class VerifyActivity extends AppCompatActivity implements View.OnClickLis
                     intent1.putExtra("return-data", true);
                     // 启动intent，开始裁剪
                     startActivityForResult(intent1, CROP_PHOTO);
-                    Toast.makeText(VerifyActivity.this, "" + requestCode, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(VerifyActivity.this, "" + requestCode, Toast.LENGTH_SHORT).show();
                 }
                 break;
             case CROP_PHOTO:// 裁剪后展示图片
